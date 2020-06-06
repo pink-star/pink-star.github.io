@@ -75,6 +75,56 @@
 ]]></content>
   </entry>
   <entry>
+    <title>next主题的安装使用 ···持续更新</title>
+    <url>/2020/06/06/next%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="安装并启用next主题"><a href="#安装并启用next主题" class="headerlink" title="安装并启用next主题"></a>安装并启用next主题</h1><h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><p>&ensp;&ensp;首先在终端进入blog目录<br>&ensp;&ensp;输入命令：（务必确定是在博客根目录下，可使用 <strong>pwd</strong> 查看路径）</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件启用next主题"><a href="#修改配置文件启用next主题" class="headerlink" title="修改配置文件启用next主题"></a>修改配置文件启用next主题</h2><p>&ensp;&ensp;在博客的根目录下找到 <strong>_config.yml</strong> ，使用编辑器打开(推荐使用vs code)<br><img src="https://raw.githubusercontent.com/pink-star/image/master/config.png" alt=""><br>&ensp;&ensp;在大概80-100行之间找到<br>&ensp;&ensp; <strong>theme: landscape</strong><br>&ensp;&ensp;将其改为 <strong>theme: next</strong>即可启用主题</p>
+<h2 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h2><ul>
+<li><p>清楚缓存&ensp;&ensp;（这样做是为了清除缓存文件 (db.json) 和已生成的静态文件 (public)。当有时发现hexo s怎么也看不到变化时候，可能需要clean再generate一下） </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
+<li><p>重新构建 &ensp;&ensp;（用于生成静态文件 ） </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务  (本地预览查看效果)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>然后可以到浏览器打开localhost:4000查看效果。如下图：<br><img src="https://raw.githubusercontent.com/pink-star/image/master/next.png" alt=""><br>next主题的安装就结束了</p>
+<h1 id="next主题美化"><a href="#next主题美化" class="headerlink" title="next主题美化"></a>next主题美化</h1><h2 id="基本信息更改"><a href="#基本信息更改" class="headerlink" title="基本信息更改"></a>基本信息更改</h2><p>&ensp;&ensp;在根目录下的 <strong>_config.yml</strong> 找到<strong>Site</strong>字段，按照自己需要进行更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/site.jpg" alt=""><br>title: 标题<br>subtitle: 副标题<br>description: 描述<br>keywords: 关键词<br>author: 作者<br>language: 语言（中文是zh-CN）<br>timezone: 网站时区(不填即可)<br>更改玩后clean一下重新构建即可看到效果</p>
+<h2 id="更改主题样式"><a href="#更改主题样式" class="headerlink" title="更改主题样式"></a>更改主题样式</h2><p>next提供了四种主题样式，我们可以在next文件夹下的 <strong>config.yml</strong>进修修改即可<br>在 <strong>config.yml</strong> 中找到 Scheme Settings字段，想要启用哪一种样式，只需要将其他注释掉，将想要展示的样式前的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/shame.jpg" alt=""></p>
+<h2 id="菜单配置"><a href="#菜单配置" class="headerlink" title="菜单配置"></a>菜单配置</h2><p>刚开始的默认菜单只开启了”首页”和”归档两个”，为了开启其他的菜单项<br>打开根目录下的 <strong>_config.yml</strong> 找到 <strong>Menu Settings</strong> 将需要开启的菜单项前面的#去掉即可  </p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/1591449707(1).png" alt=""></p>
+<p>但此时点击其他菜单项是没有东西显示的，这是我们需要新建一些页面,终端中输入</p>
+<ul>
+<li>创建标签页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
+<li>创建分类页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+这时source文件夹下有了categorcies和tags两个文件夹，打开里面的index.md文件进行编辑<br>添加  type: tags字段，categories就文件夹下的就改为categories即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/targ.jpg" alt=""><br>这时点击响应菜单栏就可以打开了</li>
+</ul>
+<p>以后写文章只需要添加<br>tags:<br>  - 标签1<br>  - 标签2<br>  …<br>categories: xxx<br>即会自动添加标签和进行分类  </p>
+<h2 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h2><p>打开next目录下的 <strong>config.yml</strong> 文件，找到<strong>Sidebar Avatar</strong>字段，按照需要更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/head.jpg" alt=""><br>url: 头像的路径<br>rounded: true （true时，头像为圆形，false时为方形）<br>rotate: true （true时，鼠标移动到头像上方头像会旋转，离开时回到原位）  </p>
+<h2 id="设置侧边社交栏"><a href="#设置侧边社交栏" class="headerlink" title="设置侧边社交栏"></a>设置侧边社交栏</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Social Links字段，将想要链接的那一栏的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/link.jpg" alt=""><br>还可以增加自定义链接，如增加一个BiliBili个人空间的链接：<br>BiliBili: 你的空间地址 || fab fa-对应图标<br>图标可以到<a href="http://www.fontawesome.com.cn/faicons/" target="_blank" rel="noopener">Font Awesome</a>中找到  </p>
+<h2 id="设置友联"><a href="#设置友联" class="headerlink" title="设置友联"></a>设置友联</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Blog rolls字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/friend.jpg" alt=""><br>需要更改自己需要的字段即可<br>  icon: fa fa-link  （友链图标）<br>  title: Links  （你的友链的名称，如我的友链叫友人帐）<br>  layout: block  (样式，提供了两个，喜欢哪个用哪个)<br>  Title: <a href="http://yoursite.com">http://yoursite.com</a>  (Title为要增加的的友链的名称，后面为对应的链接地址)  </p>
+<h2 id="开启打赏功能"><a href="#开启打赏功能" class="headerlink" title="开启打赏功能"></a>开启打赏功能</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Reward 字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/reward.jpg" alt=""><br>enable: 字段为true则默认开启打赏功能<br>animation: 字段则是当鼠标移动到付款码上方文字会有一个抖动效果<br>接着按照自己的需要开启自己需要的支付方式即可  </p>
+<h2 id="添加Fork-Github"><a href="#添加Fork-Github" class="headerlink" title="添加Fork Github"></a>添加Fork Github</h2><p>首先我们打开<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corner</a>，选择一个自己喜欢的样式，然后复制相应代码<br>接下来打开next文件下下的layout文件下的_layout.swig文件，找到  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;headband&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>将刚刚复制的代码粘贴到他后面，然后将刚刚复制的代码的中的<br><strong><a href="https://your-url" target="_blank" rel="noopener">https://your-url</a></strong>改为自己的GitHub地址即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/frok.jpg" alt=""><br>然后重新clean一下再构建，即可看见效果  </p>
+<h2 id="修改文章底部标签样式"><a href="#修改文章底部标签样式" class="headerlink" title="修改文章底部标签样式"></a>修改文章底部标签样式</h2><p>打开next/layout/_macro下的 <strong>post.swig</strong> 文件，找到footer字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footer.jpg" alt=""><br>然后将 改为 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;i class &#x3D; &quot;fa fa-tag&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
+<p>“fa fa-tag”根据需要自行更换</p>
+<h2 id="启用Valine功能"><a href="#启用Valine功能" class="headerlink" title="启用Valine功能"></a>启用Valine功能</h2><p>首先打开 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud官网</a>,注册一个账号，然后创建一个应用<br>找到该界面，辅助AppID,AppKey<br><img src="https://raw.githubusercontent.com/pink-star/image/master/vline.png" alt=""><br>打开next文件夹下的 <strong>_config.yml</strong> 找到 <strong>Valine</strong>字段 ，将刚刚复制appkey，和appid粘贴到对应栏</p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>虚幻引擎笔记</title>
     <url>/2020/06/05/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="暂时先这样写"><a href="#暂时先这样写" class="headerlink" title="暂时先这样写"></a>暂时先这样写</h1><ul>
