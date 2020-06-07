@@ -56,25 +56,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/06/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>next主题的安装使用 ···持续更新</title>
     <url>/2020/06/06/next%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="安装并启用next主题"><a href="#安装并启用next主题" class="headerlink" title="安装并启用next主题"></a>安装并启用next主题</h1><h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><p>&ensp;&ensp;首先在终端进入blog目录<br>&ensp;&ensp;输入命令：（务必确定是在博客根目录下，可使用 <strong>pwd</strong> 查看路径）</p>
@@ -114,7 +95,31 @@
 <h2 id="修改文章底部标签样式"><a href="#修改文章底部标签样式" class="headerlink" title="修改文章底部标签样式"></a>修改文章底部标签样式</h2><p>打开next/layout/_macro下的 <strong>post.swig</strong> 文件，找到footer字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footer.jpg" alt=""><br>然后将 改为 </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;i class &#x3D; &quot;fa fa-tag&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
 <p>“fa fa-tag”根据需要自行更换</p>
-<h2 id="启用Valine功能"><a href="#启用Valine功能" class="headerlink" title="启用Valine功能"></a>启用Valine功能</h2><p>首先打开 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud官网</a>,注册一个账号，然后创建一个应用<br>找到该界面，辅助AppID,AppKey<br><img src="https://raw.githubusercontent.com/pink-star/image/master/vline.png" alt=""><br>打开next文件夹下的 <strong>_config.yml</strong> 找到 <strong>Valine</strong>字段 ，将刚刚复制appkey，和appid粘贴到对应栏</p>
+<h2 id="启用Valine评论功能"><a href="#启用Valine评论功能" class="headerlink" title="启用Valine评论功能"></a>启用Valine评论功能</h2><p>首先打开 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud官网</a>,注册一个账号，然后创建一个应用<br>找到该界面，辅助AppID,AppKey<br><img src="https://raw.githubusercontent.com/pink-star/image/master/vline.png" alt=""><br>打开next文件夹下的 <strong>_config.yml</strong> 找到 <strong>Valine</strong>字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/appkey.jpg" alt=""><br>将enable字段改为true，并且将刚刚复制AppKey，和AppID粘贴到对应栏即可</p>
+<h2 id="启用搜索功能"><a href="#启用搜索功能" class="headerlink" title="启用搜索功能"></a>启用搜索功能</h2><p>next主题集成了Swiftype、 微搜索、Local Search 和 Algolia，大家有需要可以自行搜索其他的，这里只演示local search如何开启</p>
+<ul>
+<li><p>在博客根目录下打开终端，运行下命令来安装 <strong>hexo-generator-searchdb</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开博客根目录下的 <strong>_config.yml</strong> 文件，<strong>添加</strong>下列字段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></li>
+<li><p>打开next目录下的 <strong>_config.yml</strong> 文件，找到 <strong>local_search</strong> 字段，将enable字段值改为true就大功告成了<img src="https://raw.githubusercontent.com/pink-star/image/master/localsearch.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="增加内容分享功能"><a href="#增加内容分享功能" class="headerlink" title="增加内容分享功能"></a>增加内容分享功能</h2><ul>
+<li>首先在<a href="https://www.addthis.com/" target="_blank" rel="noopener">Addthis官网</a>注册登录，然后网站会叫你选择功能，选择share button即可。   </li>
+<li>然后打开个人资料设置，将里面的编号复制下来<img src="https://raw.githubusercontent.com/pink-star/image/master/bh.jpg" alt=""></li>
+<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到add_this_id字段，将刚刚复制的编号粘贴进去即可<img src="https://raw.githubusercontent.com/pink-star/image/master/addthisid.jpg" alt=""></li>
+</ul>
+<h2 id="将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏"><a href="#将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏" class="headerlink" title="将底部的由 Hexo &amp; NexT.Pisces 强力驱动隐藏"></a>将底部的<strong>由 Hexo &amp; NexT.Pisces 强力驱动</strong>隐藏</h2><p>打开<strong>Blog/themes/next/layout/_partials</strong>文件夹下的<strong>footer.swig</strong>文件<br>找到<strong>theme.footer.powered</strong>字段，将这一大段代码注释掉或者删除即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footswig.jpg" alt=""></p>
+<h2 id="背景图片、透明度等自定义美化效果"><a href="#背景图片、透明度等自定义美化效果" class="headerlink" title="背景图片、透明度等自定义美化效果"></a>背景图片、透明度等自定义美化效果</h2><ul>
+<li>打开博客根目录下的source文件夹，在里面新建一个_data文件夹，并创建一个<strong>styles.styl</strong>文件</li>
+<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到custom_file_path字段，将最后一行的style注释去掉即可<img src="https://raw.githubusercontent.com/pink-star/image/master/custom.jpg" alt=""></li>
+<li>这时我们就可以在<strong>styles.styl</strong>文件夹下自行添加css语句来自定义样式了，比如添加背景图片<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(你的图片路径);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>博客搭建</category>
@@ -123,6 +128,25 @@
         <tag>博客搭建</tag>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/06/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>虚幻引擎笔记</title>
