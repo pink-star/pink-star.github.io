@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/06/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Blog搭建记录</title>
     <url>/2020/06/06/Blog%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="使用Hexo-github-gitee、coding-搭建博客"><a href="#使用Hexo-github-gitee、coding-搭建博客" class="headerlink" title="使用Hexo + github(gitee、coding)搭建博客"></a>使用Hexo + github(gitee、coding)搭建博客</h1><h2 id="下载并安装nodejs"><a href="#下载并安装nodejs" class="headerlink" title="下载并安装nodejs"></a>下载并安装nodejs</h2><p>&nbsp; &nbsp;首先到nodejs的<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">官网</a>下载对应自己<br>&nbsp; &nbsp;操作系统的LTS(长期支持版)的版本<br>&nbsp; &nbsp;&nbsp; &nbsp;这里以win10为例：    </p>
@@ -53,6 +72,242 @@
       <tags>
         <tag>博客搭建</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚幻引擎笔记</title>
+    <url>/2020/06/05/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="暂时先这样写"><a href="#暂时先这样写" class="headerlink" title="暂时先这样写"></a>暂时先这样写</h1><ul>
+<li>正文日后补上</li>
+</ul>
+<a id="more"></a>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>虚幻引擎</tag>
+        <tag>游戏开发</tag>
+        <tag>C++</tag>
+        <tag>蓝图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C#委托与事件</title>
+    <url>/2020/10/11/C-%E5%A7%94%E6%89%98%E4%B8%8E%E4%BA%8B%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="C-委托"><a href="#C-委托" class="headerlink" title="C#委托"></a>C#委托</h1><p><strong>C#中的委托，其实就是C++中函数指针的升级版</strong></p>
+<p><strong>前言：</strong></p>
+<p>程序中一切皆地址</p>
+<ul>
+<li>变量（数据）是以某个地址为起点的一段内存中所存储的值</li>
+<li>函数（算法）是以某个地址为起点的一段内存中所 存储的一组机器语言</li>
+</ul>
+<a id="more"></a>
+
+<p>直接调用与间接调用</p>
+<ul>
+<li>直接调用：通过函数名来调用函数，CPU通过函数名直接获得函数所在的地址并开始执行 -&gt; 返回</li>
+<li>间接调用：通过函数指针来调用函数，CPU通过读取函数指针储存的值获得函数所在的地址并开始执行 -&gt; 返回</li>
+</ul>
+<h2 id="自带委托类型"><a href="#自带委托类型" class="headerlink" title="自带委托类型"></a>自带委托类型</h2><ul>
+<li>Action&lt;&gt;委托<ul>
+<li>Action委托的是不带返回值的函数，但可以有参数的函数</li>
+</ul>
+</li>
+<li>Func&lt;&gt;委托<ul>
+<li>Func委托的是带返回值，可以有参数的函数</li>
+</ul>
+</li>
+</ul>
+<p>Action与Func使用实例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		Calculater calculater &#x3D; new Calculater();</span><br><span class="line">		Action action &#x3D; new Action(calculater.Report);</span><br><span class="line"></span><br><span class="line">		action.Invoke();	&#x2F;&#x2F;使用Invoke调用</span><br><span class="line">		action();			&#x2F;&#x2F;直接调用</span><br><span class="line"></span><br><span class="line">		Func&lt;int, int, int&gt; func1 &#x3D; new Func&lt;int, int, int&gt;(calculater.Add);</span><br><span class="line">		Func&lt;int, int, int&gt; func2 &#x3D; new Func&lt;int, int, int&gt;(calculater.Sub);</span><br><span class="line"></span><br><span class="line">		int Add_Result &#x3D; func1.Invoke(100, 100);</span><br><span class="line">		int Sub_Result &#x3D; func2.Invoke(100, 100);</span><br><span class="line"></span><br><span class="line">		Console.WriteLine(Add_Result);</span><br><span class="line">		Console.WriteLine(Sub_Result);</span><br><span class="line"></span><br><span class="line">		Console.ReadKey();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;定义了一个计算类，拥有一个无返回值函数Report以及两个返回值为int的函数</span><br><span class="line">class Calculater</span><br><span class="line">&#123;</span><br><span class="line">	public void Report()</span><br><span class="line">	&#123;</span><br><span class="line">		Console.WriteLine(&quot;Calculater has three function&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int Add(int a , int b)</span><br><span class="line">	&#123;</span><br><span class="line">		return a + b;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int Sub(int a , int b)</span><br><span class="line">	&#123;</span><br><span class="line">		return a - b;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义委托delegate"><a href="#自定义委托delegate" class="headerlink" title="自定义委托delegate"></a>自定义委托delegate</h2><h3 id="委托的声明"><a href="#委托的声明" class="headerlink" title="委托的声明"></a>委托的声明</h3><ul>
+<li><p>委托是一种类，类是数据类型所以委托也是一种数据类型</p>
+</li>
+<li><p>委托与所封装的方法必须“类型兼容”（即返回值类型、参数列表类型得保持一致）</p>
+<p>声明方法：作用域 delegate 返回值类型  委托名（参数列表）</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public delegate double Calc(double num1 , double num2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="委托的一般使用场景"><a href="#委托的一般使用场景" class="headerlink" title="委托的一般使用场景"></a>委托的一般使用场景</h3><p>在日常使用中，委托的使用场景一般都是将委托作为参数，传进函数里去使用，这种把委托当作参数传进函数的使用方法，又具体分为两种</p>
+<ul>
+<li>模板方法<ul>
+<li>通过传进来的委托参数，借用指定的外部方法来产生结果</li>
+<li>一般有返回值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">namespace Factory</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Box_Factory bf &#x3D; new Box_Factory();					&#x2F;&#x2F;包装工厂的实例</span><br><span class="line">            </span><br><span class="line">            ProductFactory pf &#x3D; new ProductFactory();				&#x2F;&#x2F;工厂类的实例，用于调用MakePizz()方法和MakeToyCar()方法</span><br><span class="line">            Func&lt;Product&gt; func1 &#x3D; new Func&lt;Product&gt;(pf.MakePizz);		&#x2F;&#x2F;MakePizz()方法的委托实例</span><br><span class="line">            Func&lt;Product&gt; func2 &#x3D; new Func&lt;Product&gt;(pf.MakeToyCar);		&#x2F;&#x2F;MakeToyCar()方法的委托实例</span><br><span class="line"></span><br><span class="line">            Box box1 &#x3D; bf.MakeBox(func1);				&#x2F;&#x2F;将委托实例传进模板方法调用</span><br><span class="line">            Box box2 &#x3D; bf.MakeBox(func2);</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(box1.product.Name);</span><br><span class="line">            Console.WriteLine(box2.product.Name);</span><br><span class="line"></span><br><span class="line">            Console.ReadLine();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Product</span><br><span class="line">    &#123;</span><br><span class="line">        public string Name &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Box</span><br><span class="line">    &#123;</span><br><span class="line">        public Product product &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Box_Factory</span><br><span class="line">    &#123;</span><br><span class="line">        public Box MakeBox(Func&lt;Product&gt; product)	&#x2F;&#x2F;这就是一个模板方法，接收一个委托类型的参数</span><br><span class="line">        &#123;</span><br><span class="line">            Box box &#x3D; new Box();</span><br><span class="line">            box.product &#x3D; product.Invoke();</span><br><span class="line">            return box;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ProductFactory</span><br><span class="line">    &#123;</span><br><span class="line">        public Product MakePizz()</span><br><span class="line">        &#123;</span><br><span class="line">            Product product &#x3D; new Product();</span><br><span class="line">            product.Name &#x3D; &quot;pizza&quot;;</span><br><span class="line">            return product;</span><br><span class="line">        &#125;</span><br><span class="line">        public Product MakeToyCar()</span><br><span class="line">        &#123;</span><br><span class="line">            Product product &#x3D; new Product();</span><br><span class="line">            product.Name &#x3D; &quot;ToyCar&quot;;</span><br><span class="line">            return product;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过上述例子，可见，使用模板方法之后，Product类、Box类、Box_Factory类都不需要修改，只需要去拓展ProductFactory类，就可以生产各种产品，只需要将生产产品的方法封装在委托类型的对象里传给MakeBox模板方法，模板方法就一定能包装好这个产品。通过模板方法，就最大限度的实现了代码复用</p>
+<ul>
+<li><p>回调（callback）方法    </p>
+<ul>
+<li><p>什么是回调？</p>
+<p>回调方法指的就是，某个方法，我选择是否调用，而且回调方法还可以让我们动态的选择调用什么方法</p>
+<p>举个例子，假设A给了B一张名片，让B有需要帮忙的时候就打掉话给A，某天需要帮忙的时候，B就会打电话📞给A，调用A的某些功能来解决某些问题，如果不需要帮忙，就一直不会调用A的功能，这时候A和B之间就构成了一种回调关系</p>
+</li>
+<li><p>一般没有返回值</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">    static void Main(string[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        Box_Factory bf &#x3D; new Box_Factory();</span><br><span class="line">        ProductFactory pf &#x3D; new ProductFactory();</span><br><span class="line">        Func&lt;Product&gt; func1 &#x3D; new Func&lt;Product&gt;(pf.MakePizz);</span><br><span class="line">        Func&lt;Product&gt; func2 &#x3D; new Func&lt;Product&gt;(pf.MakeToyCar);</span><br><span class="line"></span><br><span class="line">        logger loge &#x3D; new logger();			&#x2F;&#x2F;实例化日志类</span><br><span class="line">        Action&lt;Product&gt; action1 &#x3D; new Action&lt;Product&gt;(loge.log);	&#x2F;&#x2F;实例化log方法的委托</span><br><span class="line"></span><br><span class="line">        Box box1 &#x3D; bf.MakeBox(func1, action1);				&#x2F;&#x2F;传入log委托</span><br><span class="line">        Box box2 &#x3D; bf.MakeBox(func2, action1);</span><br><span class="line"></span><br><span class="line">        Console.WriteLine(box1.product.Name);</span><br><span class="line">        Console.WriteLine(box2.product.Name);</span><br><span class="line"></span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class logger        &#x2F;&#x2F;被回调的方法，用于记录程序运行状态</span><br><span class="line">&#123;</span><br><span class="line">    public void log(Product product)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;&#123;0&#125; is make in &#123;1&#125; ,it cost &#123;2&#125;&quot;, product.Name, DateTime.UtcNow, product.price);&#x2F;&#x2F;记录什么产品被创建以及创建时间</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Product</span><br><span class="line">&#123;</span><br><span class="line">    public string Name &#123; get; set; &#125;</span><br><span class="line">    public int price &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Box</span><br><span class="line">&#123;</span><br><span class="line">    public Product product &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Box_Factory</span><br><span class="line">&#123;</span><br><span class="line">    public Box MakeBox(Func&lt;Product&gt; product, Action&lt;Product&gt; log)	&#x2F;&#x2F;接受log回调方法</span><br><span class="line">    &#123;</span><br><span class="line">        Box box &#x3D; new Box();</span><br><span class="line">        box.product &#x3D; product.Invoke();</span><br><span class="line">        if (box.product.price &gt; 50)      &#x2F;&#x2F;判断是否调用回调方法</span><br><span class="line">        &#123;</span><br><span class="line">            log(box.product);           &#x2F;&#x2F;调用回调方法</span><br><span class="line">        &#125;</span><br><span class="line">        return box;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ProductFactory</span><br><span class="line">&#123;</span><br><span class="line">    public Product MakePizz()</span><br><span class="line">    &#123;</span><br><span class="line">        Product product &#x3D; new Product();</span><br><span class="line">        product.Name &#x3D; &quot;pizza&quot;;</span><br><span class="line">        product.price &#x3D; 15;</span><br><span class="line">        return product;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public Product MakeToyCar()</span><br><span class="line">    &#123;</span><br><span class="line">        Product product &#x3D; new Product();</span><br><span class="line">        product.Name &#x3D; &quot;ToyCar&quot;;</span><br><span class="line">        product.price &#x3D; 100;</span><br><span class="line">        return product;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>无论是回调方法还是模板方法，本质都是一个外部方法封装成一个委托，将外部方法传入主调方法内部，再进行间接调用</p>
+<h2 id="委托的高级使用"><a href="#委托的高级使用" class="headerlink" title="委托的高级使用"></a>委托的高级使用</h2><ul>
+<li><p>多播委托：</p>
+</li>
+<li><ul>
+<li><p>即一个委托内部封装了多个方法</p>
+</li>
+<li><p>委托对象可使用 “+” 运算符进行合并。一个合并委托调用它所合并的两个委托。只有相同类型的委托可被合并。”-“ 运算符可用于从合并的委托中移除组件委托</p>
+</li>
+<li><p>执行顺序为合并的先后顺序</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">    static void Main(string[] args)</span><br><span class="line">    &#123;</span><br><span class="line">        Student std1 &#x3D; new Student() &#123; iD &#x3D; 1, Pencolor &#x3D; ConsoleColor.Red &#125;;</span><br><span class="line">        Student std2 &#x3D; new Student() &#123; iD &#x3D; 2, Pencolor &#x3D; ConsoleColor.Blue &#125;;</span><br><span class="line">        Student std3 &#x3D; new Student() &#123; iD &#x3D; 3, Pencolor &#x3D; ConsoleColor.Green &#125;;</span><br><span class="line"></span><br><span class="line">        Action action1 &#x3D; new Action(std1.DoHomeWork);</span><br><span class="line">        Action action2 &#x3D; new Action(std2.DoHomeWork);</span><br><span class="line">        Action action3 &#x3D; new Action(std3.DoHomeWork);</span><br><span class="line">		</span><br><span class="line">        &#x2F;&#x2F;将action2和action3都合并到action1</span><br><span class="line">        action1 +&#x3D; action2;</span><br><span class="line">        action1 +&#x3D; action3;</span><br><span class="line"></span><br><span class="line">        action1();	</span><br><span class="line"></span><br><span class="line">        Console.ReadKey();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Student</span><br><span class="line">&#123;</span><br><span class="line">    public int iD &#123; get; set; &#125;</span><br><span class="line">    public ConsoleColor Pencolor &#123; get; set; &#125;</span><br><span class="line"></span><br><span class="line">    public void DoHomeWork()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; 5; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.ForegroundColor &#x3D; this.Pencolor;</span><br><span class="line">            Console.WriteLine(&quot;&#123;0&#125; had do HomeWork &#123;1&#125; hour&quot;, iD, i);</span><br><span class="line">            Thread.Sleep(1000);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上程序运行之后，回先执行std1的方法，再执行std2的方法，再执行std3的方法</p>
+<ul>
+<li>隐式异步调用<ul>
+<li>同步与异步<ul>
+<li>同步：你做完了我做（在你的基础上）接着做</li>
+<li>异步：两个人同时做（相当于平时说的同步进行）</li>
+</ul>
+</li>
+<li>同步调用与异步调用<ul>
+<li>每一个运行的程序就是一个进程</li>
+<li>每个进程可以有多个线程</li>
+<li>同步调用是在一个线程内</li>
+<li>异步调用的底层机理是多线程</li>
+<li>串行 = 同步 = 单线程 || 并行 = 异步 = 多线程</li>
+</ul>
+</li>
+<li>隐式多线程与显式多线程<ul>
+<li>直接同步调用：使用方法名</li>
+<li>间接同步调用：使用单播、多播委托的Invoke方法</li>
+<li>隐式异步调用：使用委托的BeginInvoke方法<ul>
+<li>调用BeginInvoke会创建一个线程来执行该方法，BeginInvoke需要两个参数，一个是下一步该做什么的回调函数，如果不需要可以填null，第二个是参数列表，没有填null</li>
+</ul>
+</li>
+<li>显式异步调用：使用Thread或者Task </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="C-事件"><a href="#C-事件" class="headerlink" title="C#事件"></a>C#事件</h1><p><strong>事件（Event）</strong> 基本上说是一个用户操作，如按键、点击、鼠标移动等等，或者是一些提示信息，如系统生成的通知。应用程序需要在事件发生时响应事件。例如，中断</p>
+<p>概念上来说，事件是一种使对象或类能够提供通知的成员</p>
+<p>事件模型的五个组成部分：</p>
+<ul>
+<li>事件的拥有者      —–对象</li>
+<li>事件成员（事件本身）   —–成员</li>
+<li>事件的响应者    —–对象</li>
+<li>事件处理器   —–成员 本质上是一个回调方法</li>
+<li>事件订阅   —–把事件处理器与事件关联在一起，本质上是一种以委托类型为基础的约定</li>
+</ul>
+<p>事件处理器订阅事件，并不是事件响应者订阅事件，五个组成部分的包含关系可以如下图</p>
+<ol>
+<li><p>拥有者与响应者互不包含</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/event1.png" alt=""> </p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line"> using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace Event_1_notinclude</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Form form &#x3D; new Form();     &#x2F;&#x2F;事件拥有者</span><br><span class="line">            Contrler contrler &#x3D; new Contrler(form);     &#x2F;&#x2F;事件响应者</span><br><span class="line">            form.ShowDialog();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Contrler</span><br><span class="line">    &#123;</span><br><span class="line">        Form form;</span><br><span class="line">        public Contrler(Form form)</span><br><span class="line">        &#123;</span><br><span class="line">             if(form !&#x3D; null)</span><br><span class="line">            &#123;</span><br><span class="line">                this.form &#x3D; form;</span><br><span class="line">                &#x2F;&#x2F;Click事件</span><br><span class="line">                this.form.Click +&#x3D; this.FormClick;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;事件处理器</span><br><span class="line">        private void FormClick(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            this.form.Text &#x3D; DateTime.Now.ToString();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>响应者包含着事件的拥有者，如windows的窗体和按钮，窗体时响应者，按钮时拥有者，窗体包含着按钮</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/event2.png" alt=""> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace Event_3_includesource</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            MyForm myfrom &#x3D; new MyForm();</span><br><span class="line">            myfrom.ShowDialog();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    class MyForm : Form</span><br><span class="line">    &#123;</span><br><span class="line">        private Button bt;</span><br><span class="line">        private TextBox tb;</span><br><span class="line">        public MyForm()</span><br><span class="line">        &#123;</span><br><span class="line">            bt &#x3D; new Button();</span><br><span class="line">            tb &#x3D; new TextBox();</span><br><span class="line">            this.Controls.Add(bt);</span><br><span class="line">            this.Controls.Add(tb);</span><br><span class="line">            bt.Click +&#x3D; this.Action;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void Action(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            tb.Text &#x3D; DateTime.Now.ToString();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事件的拥有者包含着响应者</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/event3.png" alt=""> </p>
+</li>
+<li><p>事件的拥有者同时也是响应者</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/event4.png" alt=""> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Windows.Forms;</span><br><span class="line"></span><br><span class="line">namespace Event_2_same</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            MyForm myForm &#x3D; new MyForm();</span><br><span class="line">            myForm.Click +&#x3D; myForm.Action;</span><br><span class="line">            myForm.ShowDialog();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class MyForm : Form</span><br><span class="line">    &#123;</span><br><span class="line">        internal void Action(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            this.Text &#x3D; DateTime.Now.ToString();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<p>事件订阅的符号是+=，左边是事件本身，右边是事件处理器，例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">this.button +&#x3D; this.ButtonClicked</span><br><span class="line">&#x2F;&#x2F;或着：</span><br><span class="line">this.button +&#x3D; this.EventHandle(this.ButtonClicked)</span><br><span class="line">&#x2F;&#x2F;或使用Lambda表达式</span><br><span class="line">this.button +&#x3D; (object sender,EventArgs e) &#x3D;&gt; &#123;</span><br><span class="line">	this.textBox.Text &#x3D; &quot;Hello World&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个事件可以挂接多个事件处理器，一个事件处理器也可以挂接多个事件</p>
+<p><strong>自定义事件</strong></p>
+<p>完整声明：（当不知道怎么做的时候，往上述的五个基本元素想就可以了）</p>
+<ul>
+<li>事件拥有者</li>
+<li>事件本身</li>
+<li>事件接收者</li>
+<li>事件处理器</li>
+<li>事件订阅</li>
+</ul>
+<p>众所周知，事件是声明在类中的，它是一个特殊的成员变量，所以要声明事件，首先要声明一个类。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Custmor </span><br><span class="line">&#123;</span><br><span class="line">	xxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>事件的本质，其实是委托的一个包装器，所以在声明一个事件之前，还要声明一个委托，用于约束事件处理器的各种参数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public delegate void OrderEventHandle(Custmor custmor,OrderEventArgs e);        &#x2F;&#x2F;声明了一个返回值为void，参数为Custmor和OrdereventArgs的委托</span><br><span class="line">&#x2F;&#x2F;Custmor是事件拥有者，OrderEventArgs是传递的消息</span><br></pre></td></tr></table></figure>
+
+<p>OrderEventArgs不是系统类，需要自己定义，一般来说，消息类一般让它继承自系统的EventArgs类</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class OrderEventArgs : EventArgs</span><br><span class="line">&#123;</span><br><span class="line">	xxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了声明好的委托后，就可以在类中声明事件了，首先在类中声明委托</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Custmor        &#x2F;&#x2F;事件的拥有者</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">	public OrderEventHandle orderEventHadle;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后声明事件，需要Event关键字和委托</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public event OrderEventHandle Order        </span><br><span class="line">&#123;</span><br><span class="line">	add</span><br><span class="line">	&#123;</span><br><span class="line">		this.orderEventHadle +&#x3D; value;</span><br><span class="line">	&#125;</span><br><span class="line">	remove</span><br><span class="line">	&#123;</span><br><span class="line">		this.orderEventHadle -&#x3D; value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就像是多播一样，使用 + 来添加委托，因为相同类型的委托才可以被合并，所以一开始声明的委托就是为了约束。现在，事件拥有者，本身都有了，其他的处理器、接收者、订阅就和之前相同步骤就可以了</p>
+<p><strong>使用委托的invoke函数即可触发事件</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">this.orderEventHandle.Invoke();</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个餐馆服务员的服务订阅顾客点单事件的实例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Threading;</span><br><span class="line"></span><br><span class="line">namespace DiyEvent</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Custmor custmor &#x3D; new Custmor();</span><br><span class="line">            Waiter waiter &#x3D; new Waiter();</span><br><span class="line">            custmor.Order +&#x3D; waiter.Action;         &#x2F;&#x2F;事件订阅，waiter的Action订阅了custmor的Order事件</span><br><span class="line">            custmor.action();</span><br><span class="line">            custmor.PayMoney();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送的信息参数</span><br><span class="line">    public class OrderEventArgs : EventArgs</span><br><span class="line">    &#123;</span><br><span class="line">        public string DishName &#123; get; set; &#125;</span><br><span class="line">        public string Size &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public delegate void OrderEventHandle(Custmor custmor,OrderEventArgs e);    &#x2F;&#x2F;声明一个委托让事件包装</span><br><span class="line"></span><br><span class="line">    public class Custmor        &#x2F;&#x2F;事件的拥有者</span><br><span class="line">    &#123;</span><br><span class="line">        public int Cost &#123; get; set; &#125;</span><br><span class="line">        public void PayMoney()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;I will pay &#123;0&#125;$&quot;,this.Cost);</span><br><span class="line">        &#125;</span><br><span class="line">        public OrderEventHandle orderEventHadle;    &#x2F;&#x2F;为了事件声明的委托</span><br><span class="line"></span><br><span class="line">        public event OrderEventHandle Order         &#x2F;&#x2F;事件本身</span><br><span class="line">        &#123;</span><br><span class="line">            add</span><br><span class="line">            &#123;</span><br><span class="line">                this.orderEventHadle +&#x3D; value;</span><br><span class="line">            &#125;</span><br><span class="line">            remove</span><br><span class="line">            &#123;</span><br><span class="line">                this.orderEventHadle -&#x3D; value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        public void WalkInto()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Walk into the restround&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Sit()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Sit int the Chair&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void ThinkOrder()</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; 5; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;I am thinking&quot;);</span><br><span class="line">                Thread.Sleep(1000);</span><br><span class="line">            &#125;</span><br><span class="line">            if(this.orderEventHadle !&#x3D; null)    &#x2F;&#x2F;判断事件是否被订阅了</span><br><span class="line">            &#123;</span><br><span class="line">                OrderEventArgs e &#x3D; new OrderEventArgs();</span><br><span class="line">                e.DishName &#x3D; &quot;Fish&quot;;</span><br><span class="line">                e.Size &#x3D; &quot;large&quot;;</span><br><span class="line">                this.orderEventHadle.Invoke(this, e);	&#x2F;&#x2F;通过委托触发事件</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public void action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.WalkInto();</span><br><span class="line">            this.Sit();</span><br><span class="line">            this.ThinkOrder();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class Waiter         &#x2F;&#x2F;事件接收者</span><br><span class="line">    &#123;</span><br><span class="line">        internal void Action(Custmor custmor, OrderEventArgs e)     &#x2F;&#x2F;事件处理器</span><br><span class="line">        &#123;</span><br><span class="line">            custmor.Cost &#x3D; 10;</span><br><span class="line">            switch (e.Size)</span><br><span class="line">            &#123;</span><br><span class="line">                case &quot;large&quot;:</span><br><span class="line">                    custmor.Cost &#x3D; 3 * custmor.Cost;</span><br><span class="line">                    break;</span><br><span class="line">                case &quot;small&quot;:</span><br><span class="line">                    custmor.Cost &#x3D; 2 * custmor.Cost;</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            Console.WriteLine(&quot;this is your &#123;0&#125;&quot;,e.DishName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>简略声明：</strong></p>
+<p>同样需要声明类和声明一个委托，然后原本需要在类中声明委托和事件，现在只需要一行代码即可完成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public event OrderEventHandle Order;</span><br></pre></td></tr></table></figure>
+
+<p>事件的触发需要改为事件名的 invoke()函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">this.Order.invoke();</span><br></pre></td></tr></table></figure>
+
+<p>下面是刚才的完整声明的简略声明版</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Text;</span><br><span class="line">using System.Threading.Tasks;</span><br><span class="line">using System.Threading;</span><br><span class="line"></span><br><span class="line">namespace EasyDiyEvent</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Custmor custmor &#x3D; new Custmor();</span><br><span class="line">            Waiter waiter &#x3D; new Waiter();</span><br><span class="line">            custmor.Order +&#x3D; waiter.Action;        &#x2F;&#x2F;事件订阅，waiter的Action订阅了custmor的Order事件</span><br><span class="line">            custmor.action();</span><br><span class="line">            custmor.PayMoney();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;发送的信息参数</span><br><span class="line">    public class OrderEventArgs : EventArgs</span><br><span class="line">    &#123;</span><br><span class="line">        public string DishName &#123; get; set; &#125;</span><br><span class="line">        public string Size &#123; get; set; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public delegate void OrderEventHandle(Custmor custmor, OrderEventArgs e);    &#x2F;&#x2F;声明一个委托让事件包装</span><br><span class="line"></span><br><span class="line">    public class Custmor        &#x2F;&#x2F;事件的拥有者</span><br><span class="line">    &#123;</span><br><span class="line">        public int Cost &#123; get; set; &#125;</span><br><span class="line">        public void PayMoney()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;I will pay &#123;0&#125;$&quot;, this.Cost);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public event OrderEventHandle Order;		&#x2F;&#x2F;不需要声明委托，直接声明事件</span><br><span class="line"></span><br><span class="line">        public void WalkInto()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Walk into the restround&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Sit()</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Sit int the Chair&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void ThinkOrder()</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; 5; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;I am thinking&quot;);</span><br><span class="line">                Thread.Sleep(1000);</span><br><span class="line">            &#125;</span><br><span class="line">            if (this.Order !&#x3D; null)			&#x2F;&#x2F;判断事件是否被订阅</span><br><span class="line">            &#123;</span><br><span class="line">                OrderEventArgs e &#x3D; new OrderEventArgs();</span><br><span class="line">                e.DishName &#x3D; &quot;Fish&quot;;</span><br><span class="line">                e.Size &#x3D; &quot;large&quot;;</span><br><span class="line">                this.Order.Invoke(this, e);			&#x2F;&#x2F;改为通过Order事件成员来触发事件</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        public void action()</span><br><span class="line">        &#123;</span><br><span class="line">            this.WalkInto();</span><br><span class="line">            this.Sit();</span><br><span class="line">            this.ThinkOrder();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class Waiter         &#x2F;&#x2F;事件接收者</span><br><span class="line">    &#123;</span><br><span class="line">        internal void Action(Custmor custmor, OrderEventArgs e)     &#x2F;&#x2F;事件处理器</span><br><span class="line">        &#123;</span><br><span class="line">            custmor.Cost &#x3D; 10;</span><br><span class="line">            switch (e.Size)</span><br><span class="line">            &#123;</span><br><span class="line">                case &quot;large&quot;:</span><br><span class="line">                    custmor.Cost &#x3D; 3 * custmor.Cost;</span><br><span class="line">                    break;</span><br><span class="line">                case &quot;small&quot;:</span><br><span class="line">                    custmor.Cost &#x3D; 2 * custmor.Cost;</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            Console.WriteLine(&quot;this is your &#123;0&#125;&quot;, e.DishName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的介绍，我们可以知道</p>
+<p>​    事件本质上是一个委托字段的包装器，这个包装器对委托字段的访问起了限制作用，对外界隐藏了委托实例的大部分功能，仅暴露添加/移除事件处理器的功能</p>
+<p><strong>为什么需要有事件？</strong></p>
+<p>最重要的一点就是，事件在拥有者外部，只能执行 += 或者 -= 操作（即仅暴露添加、移除事件处理器的功能），但是如果是事件的话，可以外部使用Invoke等功能，这样没有限制的话肯能会导致程序编写时出错，总而言之就是为了使得程序的逻辑更“有道理”，更加安全</p>
+<p><strong>用于声明事件的委托类型的约定俗成的命名约定</strong></p>
+<ul>
+<li><p>事件名 + EventHandler</p>
+<p>​    如Foo事件的委托，一般命名为FooEventHandler</p>
+</li>
+<li><p>参数一般有两个</p>
+<ul>
+<li>第一个是object类型，名为sender，也就是事件的拥有者，事件的source</li>
+<li>第二个是EventArgs的拍成类，一般命名为： 事件名 +     EventArgs，参数名为e</li>
+<li>触发事件的方法一般命名为：On事件名，访问级别应设置为protect，不能为Public，防止外界访问</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>委托</tag>
+        <tag>事件</tag>
       </tags>
   </entry>
   <entry>
@@ -127,43 +382,6 @@
       <tags>
         <tag>博客搭建</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/06/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>虚幻引擎笔记</title>
-    <url>/2020/06/05/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="暂时先这样写"><a href="#暂时先这样写" class="headerlink" title="暂时先这样写"></a>暂时先这样写</h1><ul>
-<li>正文日后补上</li>
-</ul>
-<a id="more"></a>
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>虚幻引擎</tag>
-        <tag>游戏开发</tag>
-        <tag>C++</tag>
-        <tag>蓝图</tag>
       </tags>
   </entry>
 </search>
