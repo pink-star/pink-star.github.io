@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/img/bilibili.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/img/bilibili.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="泛型泛型在编程几乎无处不在，在面向对象编程中地位与接口相当。泛型，顾名思义就是泛化类型，什么是泛化类型？打个比方，我想在放松的时候听音乐，听音乐的中的音乐，就相当于一个泛化类型，指的并不是哪一首歌曲。在我放松的时候，你无论给我什么音乐，我都能欣赏，这个音乐并没有指明具体的音乐类型或者曲目。当我真的要找音乐来听的时候，我就需要找到一个具体的音乐，这时候具体的音乐，就叫特化 应用编程上的例子来说的话，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泛型">
+<meta property="og:url" content="http://yoursite.com/2020/10/12/%E6%B3%9B%E5%9E%8B/index.html">
+<meta property="og:site_name" content="派大鸡的Blog">
+<meta property="og:description" content="泛型泛型在编程几乎无处不在，在面向对象编程中地位与接口相当。泛型，顾名思义就是泛化类型，什么是泛化类型？打个比方，我想在放松的时候听音乐，听音乐的中的音乐，就相当于一个泛化类型，指的并不是哪一首歌曲。在我放松的时候，你无论给我什么音乐，我都能欣赏，这个音乐并没有指明具体的音乐类型或者曲目。当我真的要找音乐来听的时候，我就需要找到一个具体的音乐，这时候具体的音乐，就叫特化 应用编程上的例子来说的话，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-12T02:16:36.000Z">
+<meta property="article:modified_time" content="2020-10-12T02:17:50.250Z">
+<meta property="article:author" content="派大鸡">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="泛型">
+<meta property="article:tag" content="部分类">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/10/12/%E6%B3%9B%E5%9E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>泛型 | 派大鸡的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+	<a href="https://github.com/pink-star" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">派大鸡的Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-talk">
+
+    <a href="/talk/" rel="section"><i class="fa fa fa-edit fa-fw"></i>留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/12/%E6%B3%9B%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/img/head_round.gif">
+      <meta itemprop="name" content="派大鸡">
+      <meta itemprop="description" content="好与坏都是邂逅的一部分">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="派大鸡的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          泛型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-12 10:16:36 / 修改时间：10:17:50" itemprop="dateCreated datePublished" datetime="2020-10-12T10:16:36+08:00">2020-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/12/%E6%B3%9B%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/12/%E6%B3%9B%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型在编程几乎无处不在，在面向对象编程中地位与接口相当。泛型，顾名思义就是泛化类型，什么是泛化类型？打个比方，我想在放松的时候听音乐，听音乐的中的音乐，就相当于一个泛化类型，指的并不是哪一首歌曲。在我放松的时候，你无论给我什么音乐，我都能欣赏，这个音乐并没有指明具体的音乐类型或者曲目。当我真的要找音乐来听的时候，我就需要找到一个具体的音乐，这时候具体的音乐，就叫特化</p>
+<p>应用编程上的例子来说的话，就比如我现在有一个泛型List&lt;&gt;，我需要往里面存放指定类型的数据，我要向使用它，就必须先特化指定&lt;&gt;中存放的数据类型，我才能使用这个List。List&lt;&gt;就是泛化类型，List&lt;int&gt;就是特化之后</p>
+<p>所有泛型编程实体，都不能直接用于编程，在使用泛型实体之前，必须进行特化</p>
+<a id="more"></a>
+
+<p>泛型具有正交性：泛型类型（类/接口/委托/…）、泛型成员（属性/方法/字段/…）</p>
+<p>正交性：由于泛型和其他编程实体都有正交点</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">泛型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">类</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">接口</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">委托</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">方法</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">属性</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">字段</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">Yes</td>
+</tr>
+</tbody></table>
+<p>泛型和类有正交，正交的结果就是泛型类，泛型和接口有正交，正交出来的结果就是泛型接口…</p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>为什么需要由泛型：</p>
+<ul>
+<li><p>避免成员膨胀或者类型膨胀</p>
+<ul>
+<li><p>类型膨胀</p>
+<p>假设现在有一个程序，实现的是商品购物，数据类型有商品和装商品的盒子。假设现在有苹果和书两种商品，需要一个盒子来装商品，且一次只装一个的话，就需要定义两个盒子类，一个包含Apple字段，一个包含Book字段，可见，本应该一个Box类就可以解决的，现在却定义了两个Box类，这就是类型膨胀</p>
+</li>
+<li><p>成员膨胀</p>
+<p>为了结局上面说的哪个问题，另一种方法，就是定义一个Box类，然后这个Box类包含商店中所有商品的字段属性，也可以解决包装商品问题，但是这又导致了另一个问题，一个类中包含过多成员字段，且我们只使用其中的某一个字段属性，这就是成员膨胀</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>使用泛型既可以解决上述问题：</p>
+<p>​    在构建泛型类的时候，需要在类型后使用一对&lt;&gt;，在&lt;&gt;中写上类型参数。&lt;&gt;中就代表了一个泛化类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class Box&lt;TCargo&gt;&#123;</span><br><span class="line">	public TCargo Cargo &#123;get , set&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在使用泛型实体前，需要进行特化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Apple apple &#x3D; new Apple();</span><br><span class="line">Box&lt;Apple&gt; box &#x3D; new Box&lt;Apple&gt;()&#123;Cargo &#x3D; apple&#125;;			&#x2F;&#x2F;特化</span><br></pre></td></tr></table></figure>
+
+<p>​    使用泛型就完美的结局了商品盒子的问题，在我想要包装Apple的时候，我只需要将Box特化为只用于装Apple的对象，需要装Book的时候，只需要将Box特化为装Book的对象即可。当我在&lt;&gt;传入指定类型的时候，其实编译器就会将TCargo替换为指定的数据类型</p>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>如果一个类实现的是未特化的泛型接口，那么这个类本身也是泛型的，如果实现的是特化后的泛型接口，则类本身就不是泛型类了</p>
+<p>比如假设有一个ID接口，暂时不确定需要什么类型的ID，可能是String，也可能是Int，或者其他</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface IUnique&lt;TID&gt;</span><br><span class="line">&#123;</span><br><span class="line">	TID ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现未特化的泛型接口，此时类也是泛型类，使用该类的时候就需要特化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Student&lt;TID&gt; : IUnique&lt;TID&gt;</span><br><span class="line">&#123;</span><br><span class="line">	public TID ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现特化后的泛型接口，此时类不是泛型类，使用时和普通类一样使用即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Student : IUnique&lt;ulong&gt;</span><br><span class="line">&#123;</span><br><span class="line">	public ulong ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>使用泛型方法后，其功能相当于有多个重载方法，但是代码会少很多，避免了方法膨胀</p>
+<p>使用语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T Fun&lt;T&gt;(T a, T b);		&#x2F;&#x2F;T也可以是其他确定的类型，根据需要自行修改</span><br></pre></td></tr></table></figure>
+
+<p>使用时不需要显式的特化方法，在传参的时候编译器能自动推断，即不需要Fun<double>(d_a1 , d_a2);  只需要Fun(d_a1 , d_a2)</p>
+<p>示例：该示例实现的是将相同数据类型的数组合并在一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		int[] a1 &#x3D; &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line">		int[] a2 &#x3D; &#123; 1, 2, 3, 4, 5, 6&#125;;</span><br><span class="line">		double[] a3 &#x3D; &#123; 1.1, 2.2, 3.3, 4.4, 5.5 &#125;;</span><br><span class="line">		double[] a4 &#x3D; &#123; 1.1, 2.2, 3.3, 4.4, 5.5 ,6.6&#125;;</span><br><span class="line">		var res &#x3D; Zip(a3, a4);</span><br><span class="line">		Console.WriteLine(string.Join(&quot;,&quot;,res));</span><br><span class="line">		Console.ReadLine();</span><br><span class="line">	&#125;</span><br><span class="line">				</span><br><span class="line">	static T[] Zip&lt;T&gt;(T[] a, T[] b)		</span><br><span class="line">	&#123;</span><br><span class="line">		T[] zipped &#x3D; new T[a.Length + b.Length];</span><br><span class="line">		int ai &#x3D; 0, bi &#x3D; 0, zi &#x3D; 0;</span><br><span class="line">		do&#123;</span><br><span class="line">			if (ai &lt; a.Length) zipped[zi++] &#x3D; a[ai++];</span><br><span class="line">			if (bi &lt; b.Length) zipped[zi++] &#x3D; b[bi++];</span><br><span class="line">		&#125; while (ai &lt; a.Length || bi &lt; b.Length);</span><br><span class="line">		return zipped;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型委托"><a href="#泛型委托" class="headerlink" title="泛型委托"></a>泛型委托</h2><p>自定义的泛型委托</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delegate T deg&lt;T&gt;(T arg);		&#x2F;&#x2F;delegate T(返回值) deg&lt;T&gt;(T arg（参数）);	</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;当特化成deg&lt;int&gt;之后，相当于使用了</span><br><span class="line">delegate int deg(int arg);</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">delegate T NumberChanger&lt;T&gt;(T n);</span><br><span class="line">namespace GenericDelegateAppl</span><br><span class="line">&#123;</span><br><span class="line">    class TestDelegate</span><br><span class="line">    &#123;</span><br><span class="line">        static int num &#x3D; 10;</span><br><span class="line">        public static int AddNum(int p)</span><br><span class="line">        &#123;</span><br><span class="line">            num +&#x3D; p;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static int MultNum(int q)</span><br><span class="line">        &#123;</span><br><span class="line">            num *&#x3D; q;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line">        public static int getNum()</span><br><span class="line">        &#123;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 创建委托实例</span><br><span class="line">            NumberChanger&lt;int&gt; nc1 &#x3D; new NumberChanger&lt;int&gt;(AddNum);</span><br><span class="line">            NumberChanger&lt;int&gt; nc2 &#x3D; new NumberChanger&lt;int&gt;(MultNum);</span><br><span class="line">            &#x2F;&#x2F; 使用委托对象调用方法</span><br><span class="line">            nc1(25);</span><br><span class="line">            Console.WriteLine(&quot;Value of Num: &#123;0&#125;&quot;, getNum());</span><br><span class="line">            nc2(5);</span><br><span class="line">            Console.WriteLine(&quot;Value of Num: &#123;0&#125;&quot;, getNum());</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用自带的Func&lt;&gt;与Action&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Func&lt;double,double,double&gt; func1 &#x3D; Add;</span><br><span class="line">	&#x2F;&#x2F;	…</span><br><span class="line">static double add(double a, double b)</span><br><span class="line">&#123;</span><br><span class="line">	return a + b;</span><br><span class="line">&#125;，</span><br></pre></td></tr></table></figure>
+
+<p>在某些时候，如果我们使用的方法就像Add那么简单，也可以使用Lambda表达式（对于逻辑简单的方法，不想声明它，而是匿名地随调用随声明）</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Func&lt;double ,double,double&gt; func1 &#x3D; (double a , double b) &#x3D;&gt; &#123;return a + b;&#125;;</span><br><span class="line">(double a,double b) 中的数据类型double可以去掉，因为在类型参数&lt;&gt;中已经规定了a与b的数据类型，可以省略不写，即可以改成：</span><br><span class="line">Func&lt;double ,double,double&gt; func1 &#x3D; (a , b) &#x3D;&gt; &#123;return a + b;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>partial类</p>
+<ul>
+<li><p>partial是局部类型的意思，同一个类型的各个部分都必须有，修饰符在编译的时候仍会将各个部分的局部类型合并成一个完整的类</p>
+</li>
+<li><p>partial的限制</p>
+<ul>
+<li>局部类型只适用于类、接口、结构，不支持委托和枚举</li>
+<li>同一个类型的各个部分必须都有修饰符partial</li>
+<li>使用局部类型时，一个类型的各个部分必须位于相同的命名空间中</li>
+<li>一个类型的各个部分必须同时编译</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>老板大气，老板身体健康</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/img/wechatpay.png" alt="派大鸡 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/img/alipay.png" alt="派大鸡 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i>C#</a>
+              <a href="/tags/%E6%B3%9B%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i>泛型</a>
+              <a href="/tags/%E9%83%A8%E5%88%86%E7%B1%BB/" rel="tag"><i class="fa fa-tag"></i>部分类</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/12/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="prev" title="单元测试">
+      <i class="fa fa-chevron-left"></i> 单元测试
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/12/%E4%BE%9D%E8%B5%96%E5%8F%8D%E8%BD%AC%E4%B8%8E%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB/" rel="next" title="依赖反转与接口隔离">
+      依赖反转与接口隔离 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型"><span class="nav-number">1.</span> <span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型类"><span class="nav-number">1.1.</span> <span class="nav-text">泛型类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型接口"><span class="nav-number">1.2.</span> <span class="nav-text">泛型接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型方法"><span class="nav-number">1.3.</span> <span class="nav-text">泛型方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型委托"><span class="nav-number">1.4.</span> <span class="nav-text">泛型委托</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="派大鸡"
+      src="/images/img/head_round.gif">
+  <p class="site-author-name" itemprop="name">派大鸡</p>
+  <div class="site-description" itemprop="description">好与坏都是邂逅的一部分</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/pink-star" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;pink-star" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2276735618@qq.com" title="E-Mail → mailto:2276735618@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/281113103" title="BiliBili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;281113103" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>BiliBili</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-book fa-fw"></i>
+      友人帐
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://ricardohome.gitee.io/" title="http:&#x2F;&#x2F;ricardohome.gitee.io&#x2F;" rel="noopener" target="_blank">永远滴神</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">派大鸡</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>-->
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eda5a09f62c9afe" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'I3CqSelhL4P87H1RRr2TqR89-gzGzoHsz',
+      appKey     : 'OQjKEi1oHHDDpBk6um2xIQNg',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

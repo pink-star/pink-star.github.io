@@ -231,6 +231,616 @@
       </tags>
   </entry>
   <entry>
+    <title>Vs中类库引用</title>
+    <url>/2020/10/11/Vs%E4%B8%AD%E7%B1%BB%E5%BA%93%E5%BC%95%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="类库的引用"><a href="#类库的引用" class="headerlink" title="类库的引用"></a>类库的引用</h1><p>类库的引用时使用命名空间和类的物理基础，类库的引用分两种，一种是dll（即动态链接库引用），一种是项目引用</p>
+<ul>
+<li>dll-动态链接引用（黑盒引用，无源代码）<ul>
+<li>dll引用缺点：引用一个库可能还需要引用下层类库，非则会报错，麻烦且不安全</li>
+<li>NuGet使用：可以直接引用打包好的类库，无需检查是否有遗漏（NuGet是vs的一个扩展工具，可以让我们在项目中添加、删除、更新引用变得更加快捷方便）</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>项目引用（白盒引用，有源代码）</li>
+</ul>
+<h2 id="添加一个项目引用："><a href="#添加一个项目引用：" class="headerlink" title="添加一个项目引用："></a>添加一个项目引用：</h2><ul>
+<li>首先要将项目包含到自己的解决方案里面，(一个项目能够被多个solution包含，叫project的重用)  </li>
+</ul>
+<ol>
+<li>在解决方案中添加需要引用的project，右击解决方案然后添加一个Existing Project，找到对应的proj文件即可文件<br><img src="https://raw.githubusercontent.com/pink-star/image/master/1.jpg" alt="01"></li>
+<li>选择添加Reference然后在Projects栏中的Solution中即可看到刚刚添加的项目，选中添加即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/2.jpg" alt="02"></li>
+</ol>
+<h2 id="添加一个动态链接库引用"><a href="#添加一个动态链接库引用" class="headerlink" title="添加一个动态链接库引用"></a>添加一个动态链接库引用</h2><p>只需在添加Reference界面选择对应的dll文件即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/3.jpg" alt="03"></p>
+<h2 id="自建类库项目"><a href="#自建类库项目" class="headerlink" title="自建类库项目"></a>自建类库项目</h2><p>创建一个Class Library项目（非可执行程序，编译出来的结果就是dll文件），然后即可将该dll文件引用到需要的地方即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/4.jpg" alt="04"></p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>库引用</tag>
+        <tag>Visual Studio</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C#面向对象</title>
+    <url>/2020/10/11/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="C-结构体与类"><a href="#C-结构体与类" class="headerlink" title="C#结构体与类"></a>C#结构体与类</h1><p>类和结构有以下几个基本的不同点：</p>
+<ul>
+<li>类是引用类型，结构是值类型</li>
+<li>结构不支持继承</li>
+<li>结构不能声明默认的（即无参）构造函数</li>
+<li>结构体中声明的字段无法赋予初值，类可以</li>
+<li>结构是值类型，它在栈中分配空间；而类是引用类型，它在堆中分配空间，栈中保存的只是引用</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="C-类"><a href="#C-类" class="headerlink" title="C#类"></a>C#类</h2><hr>
+<p>类的三大成员<br>{<br>    <strong>属性</strong>    (成员变量)<br>    <strong>方法</strong>    (成员函数)<br>    <strong>事件</strong>    (类或对象通知其他类或对象的机制，为C#独有，如窗体程序的Click事件)<br>}  </p>
+<hr>
+<p>成员的静态、动态<br>{<br>    静态成员是类的成员<br>    实例(非静态)成员是对象的成员<br>}  </p>
+<p>程序的静态、动态<br>{<br>    程序未执行是，称为程序的静态(编辑期和编译期)，执行起来时，称为程序的动态或执行时期(运行器)<br>    静态程序在硬盘（外存）中，动态程序在内存中<br>}  </p>
+<hr>
+<h2 id="C-类的静态成员"><a href="#C-类的静态成员" class="headerlink" title="C# 类的静态成员"></a>C# 类的静态成员</h2><ul>
+<li>可以使用 static 关键字把类成员定义为静态的。当声明一个类成员为静态时，意味着无论有多少个类的对象被创建，只会有一个该静态成员的副本</li>
+<li>把一个成员函数声明为 static。这样的函数只能访问静态变量。静态函数在对象被创建之前就已经存在</li>
+</ul>
+<h2 id="C-属性"><a href="#C-属性" class="headerlink" title="C#属性"></a>C#属性</h2><p>属性：（类似字段）</p>
+<ul>
+<li><p>属性是一种用于访问对象或类型特征的成员，特征反映了状态</p>
+</li>
+<li><p>一个类可以设置多个属性</p>
+</li>
+<li><p>属性大多数情况下是字段的包装器，建议只使用属性来暴露数据，字段设置为private和protected</p>
+</li>
+<li><p>字段可能会被非法数据污染，而属性可以通过逻辑写法避免</p>
+</li>
+</ul>
+<p>语法：</p>
+<p>​        特性(可选)  修饰符  类型  成员名称  { get与set }</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Int public age;</span><br><span class="line">Public int Age</span><br><span class="line">&#123;</span><br><span class="line">	get&#123;</span><br><span class="line">		return age;</span><br><span class="line">		&#125;</span><br><span class="line">	set&#123;</span><br><span class="line">		age &#x3D; value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在VS中可以快速的写好完整的属性声明，可以敲击propfull，然后连续敲击两次Tap键，即可自动生成完整的属性声明代码</p>
+<h2 id="C-索引器"><a href="#C-索引器" class="headerlink" title="C#索引器"></a>C#索引器</h2><p>索引器得对象能够使用与数组下同的方式（即下标）进行索引，</p>
+<p>索引器（Indexer）可被重载。索引器声明的时候也可带有多个参数，且每个参数可以是不同的类型，索引器（Indexer）可被重载。索引器声明的时候也可带有多个参数，且每个参数可以是不同的类型</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">element-type this[int index]</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; get 访问器</span><br><span class="line">   get&#123;</span><br><span class="line">      &#x2F;&#x2F; 返回 index 指定的值</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; set 访问器</span><br><span class="line">   set&#123;</span><br><span class="line">      &#x2F;&#x2F; 设置 index 指定的值</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>索引器的行为的声明在某种程度上类似于属性（property）。定义一个属性（property）包括提供属性名称。索引器定义的时候不带有名称，但带有 <strong>this</strong> 关键字，它指向对象实例</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class IndexedNames</span><br><span class="line">&#123;</span><br><span class="line">    private string[] namelist &#x3D; new string[size];</span><br><span class="line">    static public int size &#x3D; 10;</span><br><span class="line">    public IndexedNames()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; size; i++)</span><br><span class="line">            namelist[i] &#x3D; &quot;N. A.&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public string this[int index]</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            string tmp;</span><br><span class="line"></span><br><span class="line">            if (index &gt;&#x3D; 0 &amp;&amp; index &lt;&#x3D; size - 1)</span><br><span class="line">            &#123;</span><br><span class="line">                tmp &#x3D; namelist[index];</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                tmp &#x3D; &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return (tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        set</span><br><span class="line">        &#123;</span><br><span class="line">            if (index &gt;&#x3D; 0 &amp;&amp; index &lt;&#x3D; size - 1)</span><br><span class="line">            &#123;</span><br><span class="line">                namelist[index] &#x3D; value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C-继承"><a href="#C-继承" class="headerlink" title="C#继承"></a>C#继承</h2><p>一个类可以派生自类、多个接口<br>C#不支持多继承，但是可以使用接口来实现多继承</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;访问修饰符符&gt; class &lt;基类&gt;</span><br><span class="line">&#123;</span><br><span class="line">	 ...</span><br><span class="line">&#125;</span><br><span class="line">&lt;访问修饰符符&gt; interface &lt;接口&gt;</span><br><span class="line">&#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br><span class="line">class &lt;派生类&gt; : &lt;基类&gt; , &lt;接口&gt;</span><br><span class="line">&#123;</span><br><span class="line">	 ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class shape</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br><span class="line">public interface cost</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br><span class="line">Class Rectangle : shape , cost</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="C-多态"><a href="#C-多态" class="headerlink" title="C#多态"></a>C#多态</h2><h3 id="静态多态性质"><a href="#静态多态性质" class="headerlink" title="静态多态性质"></a>静态多态性质</h3><ul>
+<li>函数重载<br>函数的定义必须彼此不同，可以是参数列表中的参数类型不同，也可以是参数个数不同。但是不能重载只有返回类型不同的函数声明</li>
+<li>运算符重载<ul>
+<li>重载运算符是具有特殊名称的函数，是通过关键字 operator 后跟运算符的符号来定义的。与其他函数一样，重载运算符有返回类型和参数列表</li>
+<li>C#要求所有的运算符重载都声明为public和static，这表示它们与它们的类或结构相关联，而不是与实例相关联</li>
+<li>可重载和不可重载运算符表</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+, -, !, ~, ++, –</td>
+<td align="center">这些一元运算符只有一个操作数，且可以被重载</td>
+</tr>
+<tr>
+<td align="center">+, -, *, /, %</td>
+<td align="center">这些二元运算符带有两个操作数，且可以被重载</td>
+</tr>
+<tr>
+<td align="center">==, !=, &lt;, &gt;, &lt;=, &gt;=</td>
+<td align="center">这些比较运算符可以被重载</td>
+</tr>
+<tr>
+<td align="center">&amp;&amp;, | |</td>
+<td align="center">这些条件逻辑运算符不能被直接重载</td>
+</tr>
+<tr>
+<td align="center">+=, -=, *=, /=, %=</td>
+<td align="center">这些赋值运算符不能被重载</td>
+</tr>
+<tr>
+<td align="center">=, ., ?:, -&gt;, new, is, sizeof, typeof</td>
+<td align="center">这些运算符不能被重载</td>
+</tr>
+</tbody></table>
+<h3 id="动态多态性"><a href="#动态多态性" class="headerlink" title="动态多态性"></a>动态多态性</h3><ul>
+<li>使用抽象类<br>  使用关键字 abstract 创建抽象类、抽象方法，用于提供接口的部分类的实现  <ul>
+<li>不能创建一个抽象类的实例</li>
+<li>不能在一个抽象类外部声明一个抽象方法</li>
+<li>一个抽象类可以同时包含抽象方法和非抽象方法</li>
+<li>抽象方法只在派生类中真正实现，这表明抽象方法只存放函数原型，不涉及主体代码</li>
+<li>在类定义前面放置关键字sealed可以将类声明为密封类，密封类不能被继承，故抽象类不能被声明为sealed</li>
+</ul>
+</li>
+</ul>
+<p><strong>子类继承抽象类时需要使用override来重写方法，override只能重写抽象方法和虚方法，抽象类也不能被多继承</strong></p>
+<ul>
+<li>使用虚方法<br>  当有一个定义在类中需要在继承类中实现时，可使用虚方法<ul>
+<li>关键字：vitual</li>
+<li>虚方法可以在不同类中有不同的个实现</li>
+<li>动态多态性是通过抽象类和虚方法实现的</li>
+</ul>
+</li>
+</ul>
+<h1 id="C-接口"><a href="#C-接口" class="headerlink" title="C#接口"></a>C#接口</h1><p>接口的存在是为了松耦合</p>
+<p>声明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;访问修饰符符&gt; interface &lt;接口名&gt;</span><br><span class="line">&#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用interface声明接口，与类的声明类似，接口声明默认是public，在namespace中类默认为internal权限</li>
+<li>如果两个接口中有完全相同的签名，那么可以用“接口名.方法名”的方法显式的来实现接口</li>
+<li>抽象类可以实现接口，而且可以<strong>只实现部分</strong>接口。</li>
+<li>接口做为参数传递，传递的是实现了接口的对象；</li>
+<li>接口作为类型返回，返回的是实现了接口的对象</li>
+</ul>
+<p>抽象类中的方法只要求不是private，而接口中的方法要求一定是public的</p>
+<p>abstract、interface、virtual、function、override关系：</p>
+<ul>
+<li>当一个类需要实现接口中的方法的时候，该方法一定是public</li>
+<li>当一个抽象类想要实现接口方法时，该方法一定是public abstract</li>
+<li>当一个类想要实现接口中的方法并且想要让子类重写，该方法一定是public virtual，被重写后时public override</li>
+<li>当一个抽象方法被实现且需要被子类重写，则是override virtual方法</li>
+</ul>
+<p>关系图：</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/guanxi.png" alt="">  </p>
+<h1 id="C-命名空间"><a href="#C-命名空间" class="headerlink" title="C#命名空间"></a>C#命名空间</h1><ul>
+<li>using static<br>  using static指令可以直接访问静态成员类型，如:  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using static System.Math;</span><br><span class="line">Var I &#x3D; PI;</span><br><span class="line">                </span><br><span class="line">using static System.console;</span><br><span class="line">Writeline(&quot;xxx&quot;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    </span><br><span class="line">* 命名空间别名</span><br><span class="line">    可以使用别名替代原命名空间名</span><br><span class="line">    &#96;&#96;&#96;c#</span><br><span class="line">    using 别名 &#x3D; 指定命名空间名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="C-枚举"><a href="#C-枚举" class="headerlink" title="C#枚举"></a>C#枚举</h1><p>声明枚举的一般语法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum &lt;enum_name&gt;</span><br><span class="line">&#123; </span><br><span class="line">    enumeration list   &#x2F;&#x2F;enumeration list 是一个用逗号分隔的标识符列表</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F;示例</span><br><span class="line">enum Days &#123; Sun, Mon, tue, Wed, thu, Fri, Sat &#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="C-不安全代码块"><a href="#C-不安全代码块" class="headerlink" title="C#不安全代码块"></a>C#不安全代码块</h1><p>在C#中，如果想使用指针，需要在方法前添加unsafe关键字，或者使用<br>unsafe{<br>    xxxxx<br>}<br>如果想使用unsafe代码块，需要在PROJECT栏的Stackoverflow 中的Build里勾选Allow unsafe code  </p>
+<h1 id="C-预处理指令"><a href="#C-预处理指令" class="headerlink" title="C#预处理指令"></a>C#预处理指令</h1><p>C#预处理指令，用于在条件编译中起作用，与C和C++不同的是，C#的预处理指令不是用来创建宏的</p>
+<p>C#预处理指令列表：<br>|预处理指令|描述|<br>|:–|:–|<br>|#define|C#预处理指令|<br>|#undef|它用于取消定义符号|<br>|#if|它用于测试符号是否为真|<br>|#else|它用于创建复合条件指令，与 #if 一起使用|<br>|#elif|它用于创建复合条件指令|<br>|#endif|指定一个条件指令的结束|<br>|#line|它可以让您修改编译器的行数以及（可选地）输出错误和警告的文件名|<br>|#error|它允许从代码的指定位置生成一个错误|<br>|#warning|它允许从代码的指定位置生成一级警告|<br>|#region|它可以让您在使用 Visual Studio Code Editor 的大纲特性时，指定一个可展开或折叠的代码块|<br>|#endregion|它标识着 #region 块的结束|</p>
+<ul>
+<li><p>#define 预处理器<br>可以定义一个符号，然后如果传递给#if指令的表达式，表达式会返回true，说明该符号已定义<br>例：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#define PI</span><br><span class="line">using System;</span><br><span class="line">namespace PreprocessorDAppl</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            #if (PI)</span><br><span class="line">            Console.WriteLine(&quot;PI is defined&quot;);</span><br><span class="line">            #else</span><br><span class="line">            Console.WriteLine(&quot;PI is not defined&quot;);</span><br><span class="line">            #endif</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>条件指令<br>可以用 #If来创建一个条件指令，条件指令用于测试符号是否为真。类似与if的使用方法,<strong>一个以 #if 指令开始的条件指令，必须显示地以一个 #endif 指令终止！</strong></p>
+</li>
+<li><p>#warning和#error：<br>当编译器遇到#warning指令时，会给用户显示#warning指令后面的文本<br>当编译器遇到#error指令时，会给用户显示#error指令后面的文本，并立即退出编译<br>示例：</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#if DEBUG &amp;&amp; RELEASE  </span><br><span class="line">#error &quot;You&#39;ve defined DEBUG and RELEASE simultaneously!&quot;  </span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#warning &quot;Don&#39;t forget to remove this line before the boss tests the code!&quot;  </span><br><span class="line">Console.WriteLine(&quot;*I hate this job.*&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>#region和#endredgion<br>这两个指令用于把一段代码标记为有给定名称的一个块，它不影响编译过程，优点是可以被某些编辑器识别，可以使代码在屏幕上更好的布局</p>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#region Member Field Declarations</span><br><span class="line">int x;</span><br><span class="line">double d;</span><br><span class="line">Currency balance;</span><br><span class="line">#endregion</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="C-异常处理"><a href="#C-异常处理" class="headerlink" title="C#异常处理"></a>C#异常处理</h1><p>C#的异常处理建立在：try、catch、finally和throw上</p>
+<ul>
+<li>try：一个try块标识了一个将被激活的特定的异常的代码块，后跟一个或者多个catch块</li>
+<li>catch：程序通过异常处理程序捕获异常。catch关键字表示异常的捕获</li>
+<li>finally：finally块用于执行给定的语句，不管异常是否被抛出都会执行</li>
+<li>throw：当问题出现时，程序抛出异常，使用throw关键字来完成</li>
+</ul>
+<p>使用try/catch的语法如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 引起异常的语句</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName e1 )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName e2 )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName en )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	finally</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 要执行的语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="C-中的异常类"><a href="#C-中的异常类" class="headerlink" title="C#中的异常类"></a>C#中的异常类</h1><ul>
+<li>C# 中的异常类主要是直接或间接地派生于 System.Exception 类</li>
+<li>System.ApplicationException 和 System.SystemException 类是派生于 System.Exception 类的异常类<ul>
+<li>System.ApplicationException 类支持由应用程序生成的异常。所有程序员定义的异常都应派生自该类</li>
+<li>System.SystemException 类是所有预定义的系统异常的基类</li>
+</ul>
+</li>
+</ul>
+<p>自定义异常类<br>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户可以自定义异常类，异常类继承自ApplicationException类<br>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">namespace UserDefinedException</span><br><span class="line">&#123;</span><br><span class="line">   class TestTemperature</span><br><span class="line">   &#123;</span><br><span class="line">      static void Main(string[] args)</span><br><span class="line">      &#123;</span><br><span class="line">         Temperature temp &#x3D; new Temperature();</span><br><span class="line">         try</span><br><span class="line">         &#123;</span><br><span class="line">            temp.showTemp();</span><br><span class="line">         &#125;</span><br><span class="line">         catch(TempIsZeroException e)</span><br><span class="line">         &#123;</span><br><span class="line">            Console.WriteLine(&quot;TempIsZeroException: &#123;0&#125;&quot;, e.Message);</span><br><span class="line">         &#125;</span><br><span class="line">         Console.ReadKey();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class TempIsZeroException: ApplicationException</span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;继承自ApplicationException类，创建参数为字符串类型的构造函数</span><br><span class="line">   public TempIsZeroException(string message): base(message)</span><br><span class="line">   &#123;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Temperature</span><br><span class="line">&#123;</span><br><span class="line">   int temperature &#x3D; 0;</span><br><span class="line">   public void showTemp()      &#x2F;&#x2F;显示函数，在temperature &#x3D; 0时抛出异常，否则正常打印</span><br><span class="line">   &#123;</span><br><span class="line">      if(temperature &#x3D;&#x3D; 0)</span><br><span class="line">      &#123;</span><br><span class="line">         throw (new TempIsZeroException(&quot;Zero Temperature found&quot;));</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">         Console.WriteLine(&quot;Temperature: &#123;0&#125;&quot;, temperature);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>面向对象</tag>
+        <tag>异常处理</tag>
+        <tag>预处理指令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>依赖反转与接口隔离</title>
+    <url>/2020/10/12/%E4%BE%9D%E8%B5%96%E5%8F%8D%E8%BD%AC%E4%B8%8E%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB/</url>
+    <content><![CDATA[<h1 id="依赖反转（解耦）"><a href="#依赖反转（解耦）" class="headerlink" title="依赖反转（解耦）"></a>依赖反转（解耦）</h1><p>在面向对象编程领域中，<strong>依赖反转原则</strong>（Dependency inversion principle，DIP）是指一种特定的解耦（传统的依赖关系创建在高层次上，而具体的策略设置则应用在低层次的模块上）形式，使得高层次的模块不依赖于低层次的模块的实现细节，依赖关系被颠倒（反转），从而使得低层次模块依赖于高层次模块的需求抽象。</p>
+<p>如图所示，第一小图中，Driver拥有一个Car对象，Car又拥有一个Run方法，但是如果让Driver去使用RaceCar是不可行的，而图二使用接口实现了依赖反转，Car、Truck都实现了IVehicle接口，Driver的成员不再是特定的Car，而是一个Ivehicle，这样Car就不是被Driver依赖了，而是依赖于IVehicle。</p>
+<a id="more"></a>
+
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/ylfz.jpg" alt=""></p>
+<h1 id="接口隔离"><a href="#接口隔离" class="headerlink" title="接口隔离"></a>接口隔离</h1><p>接口隔离是为了避免将过多的方法声明在同一个接口，若一个接口需要多个方法，可以将方法声明在多个接口，然后改接口多继承与多个接口</p>
+<p>比如，现有一个车接口，拥有一个Run方法，一个坦克接口，拥有Fire和Run方法，一个Driver，只需要执行Run方法，不需要Fire方法，可以使用接口隔离原则，将Run与Fire方法声明在不同接口IVehicle与Iweapon，ITank接口继承自IVehicle接口与Iweapon，Dirver类在实现时只需要声明一个IVehicle接口，此时，即使传入的是实现了ITank的类示例，也只暴露Run方法，不暴露Fire方法</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Dirver</span><br><span class="line">&#123;</span><br><span class="line">	private IVehicle _vehicle;</span><br><span class="line">	public Dirver(IVehicle vehicle)</span><br><span class="line">	&#123;</span><br><span class="line">		_Car &#x3D; vehicle;</span><br><span class="line">	&#125;</span><br><span class="line">	public void Drive()</span><br><span class="line">	&#123;</span><br><span class="line">		_vehicle.Run();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有时候，如果编程时设置的需要传进来的接口过大，就会导致一些满足需求的变量穿不进来</p>
+<p>如ICollection实现了IEnumerable，若是参数设置为ICollection，则只实现了IEnumerable的类的对象就无法传入了</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>接口隔离</tag>
+        <tag>依赖注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>反射与依赖注入</title>
+    <url>/2020/10/12/%E5%8F%8D%E5%B0%84%E4%B8%8E%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[<h1 id="C-反射"><a href="#C-反射" class="headerlink" title="C#反射"></a>C#反射</h1><p>反射指程序可以访问、检测和修改它本身状态或行为的一种能力，可以使用反射动态地创建类型的实例，将类型绑定到现有对象，或从现有对象中获取类型。然后，可以调用类型的方法或访问其字段和属性，反射的存在是为了更松的耦合。</p>
+<p>上面的话可能有点绕，说白了反射的功能，就是拿到一个对象。能在不使用new操作符，也不知道该对象具体的静态类型的情况下，能够创建出一个同类型的对象，还能访问这个对象所带有的各个成员。那为什么能够实现更松的耦合呢。因为在有new操作符的地方，后面一定要跟具体的静态类型。一跟类型，就有依赖了。且这种依赖还是紧耦合。使用反射就能不使用new操作符，以及静态类型。</p>
+<p>反射是.NET框架的功能，只要是在.NET框架存在的地方，任何语言都可以实现反射</p>
+<a id="more"></a>
+
+<p>直接使用反射：（很少用到）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		ITank tank &#x3D; new HeavyTank();       &#x2F;&#x2F;静态类型</span><br><span class="line">		&#x2F;&#x2F;----------------------下方不在使用静态类型------------------------&#x2F;&#x2F;</span><br><span class="line">		var t &#x3D; tank.GetType();         &#x2F;&#x2F;t现在为动态类型</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;Activator : 激活器  、  CreatInstance ： 创建实例，此时创建出来的 o 是object类型的，并不知道他的静态类型</span><br><span class="line">		object o &#x3D; Activator.CreateInstance(t);</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;根据方法名从类型中得到方法</span><br><span class="line">		MethodInfo fireMi &#x3D; t.GetMethod(&quot;Fire&quot;);</span><br><span class="line">		MethodInfo runMi &#x3D; t.GetMethod(&quot;Run&quot;);</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;需要两个参数 1、执行该方法的对象。    2：参数列表</span><br><span class="line">		fireMi.Invoke(o, null);</span><br><span class="line">		runMi.Invoke(o, null);</span><br><span class="line"></span><br><span class="line">		Console.ReadKey();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;-----------------------------------------------------------类定义-------------------------------------------------------------------&#x2F;&#x2F;</span><br><span class="line">class Driver</span><br><span class="line">&#123;</span><br><span class="line">    private IVehicle _tank;</span><br><span class="line"></span><br><span class="line">    public Driver(IVehicle tank)</span><br><span class="line">    &#123;</span><br><span class="line">        _tank &#x3D; tank;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Drive()</span><br><span class="line">    &#123;</span><br><span class="line">        _tank.Run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface IVehicle</span><br><span class="line">&#123;</span><br><span class="line">    void Run();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Car : IVehicle</span><br><span class="line">&#123;</span><br><span class="line">    public void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Car is run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Truck : IVehicle</span><br><span class="line">&#123;</span><br><span class="line">    public void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Truck is run&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface IWeapon</span><br><span class="line">&#123;</span><br><span class="line">    void Fire();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface ITank : IWeapon, IVehicle</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class LightTank : ITank</span><br><span class="line">&#123;</span><br><span class="line">    public void Fire()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Boom&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Ka Ka Ka&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MedioTank : ITank</span><br><span class="line">&#123;</span><br><span class="line">    public void Fire()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Boom!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Ka! Ka! Ka!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class HeavyTank : ITank</span><br><span class="line">&#123;</span><br><span class="line">    public void Fire()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Boom!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Run()</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(&quot;Ka!! Ka!! Ka!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h1><p>依赖注入需要借助依赖注入框架——DependencyInjection</p>
+<p>依赖注入中有一种重要的东西，叫做container，即容器。容器中存放各种各样的类型，以及对应的接口。</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/kuangjia.png" alt=""> </p>
+<p>安装好框架后，需要引入名称空间</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using Microsoft.Extensions.DependencyInjection;</span><br></pre></td></tr></table></figure>
+
+<p>依赖注入示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;容器，存放各种各样的类型，以及对应的接口</span><br><span class="line">		var sc &#x3D; new ServiceCollection();</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;注册时需要接口的动态类型，以及哪个类实现了接口，不能直接放ITank，因为ITank是一个静态类型，使用了typeof才能得到动态类型</span><br><span class="line">		sc.AddScoped(typeof(ITank),typeof(HeavyTank));	&#x2F;&#x2F;注册ITank，以及注册了哪个类实现了ITank接口</span><br><span class="line"></span><br><span class="line">		var sp &#x3D; sc.BuildServiceProvider();</span><br><span class="line">		&#x2F;&#x2F;-------------------------分割线上为一次性注册----------------------------&#x2F;&#x2F;</span><br><span class="line">		&#x2F;&#x2F;在程序各个地方，只要能看到sp的地方，都可以如下使用，不再有new操作符</span><br><span class="line"></span><br><span class="line">		ITank tank &#x3D; sp.GetService&lt;ITank&gt;();	</span><br><span class="line">		tank.Fire();</span><br><span class="line">		tank.Run();</span><br><span class="line">        </span><br><span class="line">		Console.ReadKey();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        从上述例子中，我们可以看到，每当需要一个实现了ITank的类的对象的时候，我就可以从容器实例化该对象。因为该对象已经在容器中注册了。那这么做的好处是什么呢？好处就在于，在整个程序中，各个地方都使用到了ITank所引用的实例。但是如果有一天，程序需要修改，ITank接口对应的实现类不再是HeavyTank。而是其他的类。此时如果程序中使用的不是从容器中构建的对象，而是使用的ITank TankName = new HeavyTank。那程序中许多使用了new方法创建的对象的地方都需要修改。就会十分的麻烦，如果使用重构的方法将new HeavyTank修改，可能会出现，有一部分代码使用了new HeavyTank，但可能该代码是给别的逻辑准备的，并不需要修改的时候，就会出现许多问题。但如果使用的是依赖注入的形式，只需要将注册ITank时候的所绑定的HeavyTank修改了即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		&#x2F;&#x2F;容器，存放各种各样的类型，以及对应的接口</span><br><span class="line">		var sc &#x3D; new ServiceCollection();</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;注册时需要接口的动态类型，以及哪个类实现了接口，不能直接放ITank，因为ITank是一个静态类型，使用了typeof才能得到动态类型</span><br><span class="line">		sc.AddScoped(typeof(ITank),typeof(HeavyTank));	&#x2F;&#x2F;注册ITank，以及注册了哪个类实现了ITank接口</span><br><span class="line">		sc.AddScoped(typeof(IVehicle), typeof(Car));	&#x2F;&#x2F;注册IVehical，以及注册了哪个类实现了IVehical接口</span><br><span class="line"></span><br><span class="line">		sc.AddScoped&lt;Driver&gt;();			&#x2F;&#x2F;注册Driver类</span><br><span class="line">		var sp &#x3D; sc.BuildServiceProvider();</span><br><span class="line">		&#x2F;&#x2F;-------------------------分割线上为一次性注册----------------------------&#x2F;&#x2F;</span><br><span class="line">		&#x2F;&#x2F;在程序各个地方，只要能看到sp的地方，都可以如下使用，不再有new操作符</span><br><span class="line"></span><br><span class="line">		&#x2F;&#x2F;原本创建Driver时需要new一个IVehicle的变量进去，但是现在由于IVehicle已经注册在了sp中，所以其会自动寻找并创建</span><br><span class="line">		var driver &#x3D; sp.GetService&lt;Driver&gt;();	</span><br><span class="line">		driver.Drive();</span><br><span class="line"></span><br><span class="line">		Console.ReadKey();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        上述例子中，从容器中实例化Driver对象的时候。原本创建Driver的时候，需要的先创建一个Driver所驾驶的对象。然后将该对象传给Driver的构造器。但使用的是容器的话，由于容器中已经注册了Driver以及IVehicle。当容器创建Driver实例的时候，就会去容器中找IVehicle所对应的类，然后创建这个实例。然后交给Driver构造器去实例化对象。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>依赖注入</tag>
+        <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单元测试</title>
+    <url>/2020/10/12/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<h1 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h1><p>所谓单元测试（unit testing），就是开发者编写的一小段代码，用于对软件中的最小单元进行检查和验证，其一般验证对象是一个函数或者一个类。通常而言，一个单元测试是用于判断某个特定条件（或者场景）下某个特定函数的行为</p>
+<p>VS中创建单元测试：</p>
+<p>​    在项目解决器中添加项目</p>
+<a id="more"></a>
+
+<p>​    <img src="https://raw.githubusercontent.com/pink-star/image/master/1.png" alt=""> </p>
+<p>​    找到Test栏的Unit Test Project。创建</p>
+<p>​    <img src="https://raw.githubusercontent.com/pink-star/image/master/2.png" alt=""> </p>
+<p>​    然后引用要被测试的类的命名空间</p>
+<p>​    <img src="https://raw.githubusercontent.com/pink-star/image/master/2.5.png" alt=""> </p>
+<ul>
+<li><p>测试项目和被测试项目之间的名称是具有关系的，具体如下对应关系</p>
+<ul>
+<li>（测试项目名——测试项目名Tests）</li>
+<li>（命名空间——命名空间.Tests）</li>
+<li>（测试类名——测试类名Tests）</li>
+<li>（测试方法——测试方法Test）</li>
+</ul>
+</li>
+<li><p>在测试类中，类必须使用特性[TestClass()]或者是[TestClass]修饰，测试的方法必须使用[TestMethod()]或者是[TestMethod]修饰</p>
+</li>
+<li><p>测试方法的返回类型必须为void ，并且测试函数不能够有参数</p>
+</li>
+<li><p>在测试方法中的代码一般都是分为以下两个步骤</p>
+<ul>
+<li><p>创建测试类的对象</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Calculate cal &#x3D; new Calculate();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用断言来判断测试结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Assert.AreEqual(cal.Add(200, 300), 500);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Program.cs</span><br><span class="line">public interface IPower</span><br><span class="line">&#123;</span><br><span class="line">	int Getpower();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;UnitTest.cs</span><br><span class="line">[TestMethod]</span><br><span class="line">public void PowerLargeT220()</span><br><span class="line">&#123;</span><br><span class="line">	var Fan &#x3D; new Program.DiskFan(new largepw());</span><br><span class="line">	string expected &#x3D; &quot;Worring&quot;;</span><br><span class="line">	string actual &#x3D; Fan.work();</span><br><span class="line">	Assert.AreEqual(expected, actual);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class largepw : Program.IPower</span><br><span class="line">&#123;</span><br><span class="line">	public int Getpower()</span><br><span class="line">	&#123;</span><br><span class="line">		return 220;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Test Explorer栏选择要测试的方法执行即可</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/5.png" alt=""> </p>
+<p>如果觉得需要书写过多的繁杂凌乱的类（如largepw），可以使用Moc库来简化代码</p>
+<p>Moq是.net平台下的一个非常流行的模拟库,只要有一个接口它就可以动态生成一个对象</p>
+<p>Moq安装：</p>
+<p>​    右键项目，选择Manage NuGet Packages，在Browse中搜索Moq安装即可  </p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/4.png" alt=""> </p>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[TestMethod]</span><br><span class="line">public void Powerlower100()</span><br><span class="line">&#123;</span><br><span class="line">	var mock &#x3D; new Mock&lt;Program.IPower&gt;();		&#x2F;&#x2F;使用Moc创建对象</span><br><span class="line">	mock.Setup(ps &#x3D;&gt; ps.Getpower()).Returns(() &#x3D;&gt; 80);</span><br><span class="line"></span><br><span class="line">	var Fan &#x3D; new Program.DiskFan(mock.Object);</span><br><span class="line">	string expected &#x3D; &quot;Working slow&quot;;</span><br><span class="line">	string actual &#x3D; Fan.work();</span><br><span class="line">	Assert.AreEqual(expected, actual);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>开发</tag>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>插件式编程</title>
+    <url>/2020/10/12/%E6%8F%92%E4%BB%B6%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="插件式编程"><a href="#插件式编程" class="headerlink" title="插件式编程"></a>插件式编程</h1><p>​        插件指的是不与主体程序一起编译，却可以和主体程序一起工作的组件。往往由第三方提供。插件式编程的好处是，可以以主题程序为中心，生成一个生态圈，给第三方添加新功能的机会。一般主体程序开发者，都会发布一个带有程序开发接口的程序开发包（SDK），有了SDK，第三方开发者才能够更标准，高效的跟主题程序对接。</p>
+<p>那么主体程序开发者该如何制作并发布SDK呢，首先需要创建一个SDK project，在项目个管理器中新建一个Libary</p>
+<a id="more"></a>
+
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/libary_sdk.png" alt=""> </p>
+<p>创建好项目之后，就可以在项目中添加各种需要的接口，如IAnimal接口，用于实现动物叫的功能</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/IAnimal_interface.png" alt=""> </p>
+<p>其实现在，我们的SDK程序包已经可以发布了，但是考虑到有些时候，第三方程序的开发人员可能在开发多个插件的时候，有个功能没有来得及开发完成，而且需要发布了。这时候我们就需要使用一个属性添加到某个功能上，来限制读取这个功能。这个属性就是UnfinishedAttrbute属性</p>
+<p>在刚刚得项目目录下，创建一个UnfinishedAttrbute类，并且让该类京城子Attrbute类</p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/UnfinishedAttrbute.png" alt=""> </p>
+<p>在第三方开发插件得时候，类只需要加上[UnfinishedAttrbute]属性，然后通过该语句限制即可，这个时候，只需要将项目文件编译好后得.dll文件发布给第三方程序开发者就可以了，第三方开发者只需要实现开发包中得接口即可</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Animals</span><br><span class="line">&#123;</span><br><span class="line">    public class Cat:IAnimal</span><br><span class="line">    &#123;</span><br><span class="line">        public void Voice(int times)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; times; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Meow!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>案例，假设现在有个婴儿车开发厂商，婴儿车有个小动物叫声认知教学功能，小朋友选择对应的小动物后，再选择叫的此时，该小动物的叫声就会播放这么多次。默认提供一两种动物，且发布一个可让第三方自定义动物叫声的SDK包</p>
+<p>主体程序：</p>
+<p>大概思路，再主体程序下有一个文件夹Animals。该文件夹用于放置第三方小动物的 .dll 插件，利用反射来加载插件，并且拿到定义好的动物类，然后创建实例，并调用所用动物类里面的Voice方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Linq;</span><br><span class="line">using System.Runtime.Loader;</span><br><span class="line"></span><br><span class="line">namespace Babydemo</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F;得到Animals文件夹路径</span><br><span class="line">            var folder &#x3D; Path.Combine(Environment.CurrentDirectory, &quot;Animals&quot;);</span><br><span class="line">            &#x2F;&#x2F;导入所有的dll</span><br><span class="line">            &#x2F;&#x2F;folder路径下所有所有文件的名称</span><br><span class="line">            var files &#x3D; Directory.GetFiles(folder);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F;用来存储类型的列表</span><br><span class="line">            var animalType &#x3D; new List&lt;Type&gt;();</span><br><span class="line">           </span><br><span class="line">            foreach (var file in files)		&#x2F;&#x2F;遍历刚刚得到的所有文件</span><br><span class="line">            &#123;</span><br><span class="line">                var assembly &#x3D; AssemblyLoadContext.Default.LoadFromAssemblyPath(file);</span><br><span class="line">                var types &#x3D; assembly.GetTypes();		&#x2F;&#x2F;得到当前dll文件下所有的类形，返回一个字符串数组</span><br><span class="line">                foreach (var t in types)		&#x2F;&#x2F;遍历所有的当前dll文件下所有的类型，筛选出实现了IAnimal接口且未被[UnfinishedAttrbute]标记的类</span><br><span class="line">                &#123;</span><br><span class="line">                    &#x2F;&#x2F;判断是否实现了IAnimal接口</span><br><span class="line">                    if (t.GetInterfaces().Contains(typeof(IAnimal)))</span><br><span class="line">                    &#123;</span><br><span class="line">                        &#x2F;&#x2F;判断是否具有[UnfinishedAttrbute]属性</span><br><span class="line">                        var isUnfinished &#x3D; t.GetCustomAttributes(false).Any(a &#x3D;&gt; a.GetType() &#x3D;&#x3D; typeof(UnfinishedAttrbute));</span><br><span class="line">                        if (isUnfinished) continue;</span><br><span class="line">                        animalType.Add(t);		&#x2F;&#x2F;将符合条件的类型添加到用于存放类型的列表中</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            while(true)		&#x2F;&#x2F;死循环</span><br><span class="line">            &#123;</span><br><span class="line">                for (int i &#x3D; 0; i &lt; animalType.Count; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine($&quot;&#123;i+1&#125;.&#123;animalType[i].Name&#125;&quot;);		&#x2F;&#x2F;打印出所有动物类的类名</span><br><span class="line">                &#125;</span><br><span class="line">                Console.WriteLine(&quot;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&quot;);</span><br><span class="line">                Console.WriteLine(&quot;please choose animal:&quot;);</span><br><span class="line"></span><br><span class="line">                int index &#x3D; int.Parse(Console.ReadLine());					&#x2F;&#x2F;输入小动物编号</span><br><span class="line">                if(index &gt; animalType.Count || index &lt; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    Console.WriteLine(&quot;No such an animal . Try again!&quot;);</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                Console.WriteLine(&quot;How many times?&quot;);</span><br><span class="line"></span><br><span class="line">                int times &#x3D; int.Parse(Console.ReadLine());					&#x2F;&#x2F;输入动物叫的次数</span><br><span class="line">                var t &#x3D; animalType[index - 1];				&#x2F;&#x2F;得到当前动物的类型</span><br><span class="line">                var m &#x3D; t.GetMethod(&quot;Voice&quot;);				&#x2F;&#x2F;得到Voice方法</span><br><span class="line">                var o &#x3D; Activator.CreateInstance(t);		&#x2F;&#x2F;使用反射创建一个对应的动物类</span><br><span class="line">				</span><br><span class="line">                &#x2F;&#x2F;m.Invoke(o, new object[] &#123; times &#125;);		&#x2F;&#x2F;其中一种调用方式</span><br><span class="line">                </span><br><span class="line">                &#x2F;&#x2F;当使用了SDK之后，我们可以明确的知道它一定实现了IAnimal接口，就会可以使用强制类型转换，将a转换为强类型的变量。直接调用</span><br><span class="line">                var a &#x3D; o as IAnimal; 			 		</span><br><span class="line">                a.Voice(times);</span><br><span class="line">              </span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三方插件：</p>
+<p>创建好项目，引用了SDK中的dll后。实现SDK中的Animal类即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;Animal.lib1&#x2F;Cat.cs</span><br><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System;</span><br><span class="line"></span><br><span class="line">namespace Animals</span><br><span class="line">&#123;</span><br><span class="line">    public class Cat:IAnimal</span><br><span class="line">    &#123;</span><br><span class="line">        public void Voice(int times)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; times; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Meow!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------------------------------------------------------------------\\</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Animal.lib1&#x2F;Sheep.cs</span><br><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System</span><br><span class="line"></span><br><span class="line">namespace Animals</span><br><span class="line">&#123;</span><br><span class="line">    public class Sheep:IAnimal</span><br><span class="line">    &#123;</span><br><span class="line">        public void Voice(int times)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; times; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Baa...&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------------------------------------------------------------------\\</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Animal.lib2&#x2F;Cow.cs</span><br><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System</span><br><span class="line"></span><br><span class="line">namespace Animals.Lib2</span><br><span class="line">&#123;</span><br><span class="line">    [UnfinishedAttrbute]</span><br><span class="line">    public class Cow:IAnimal</span><br><span class="line">    &#123;</span><br><span class="line">        public void Voice(int times)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F;没做完</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;-------------------------------------------------------------------------------------------------------------------------------------\\</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Animal.lib2&#x2F;Dog.cs</span><br><span class="line">using BabyStoller.SDK;</span><br><span class="line">using System</span><br><span class="line"></span><br><span class="line">namespace Animals.Lib2</span><br><span class="line">&#123;</span><br><span class="line">    public class Dog:IAnimal</span><br><span class="line">    &#123;</span><br><span class="line">        public void Voice(int times)</span><br><span class="line">        &#123;</span><br><span class="line">            for (int i &#x3D; 0; i &lt; times; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Woof!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>SDK</tag>
+        <tag>插件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/06/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>泛型</title>
+    <url>/2020/10/12/%E6%B3%9B%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>泛型在编程几乎无处不在，在面向对象编程中地位与接口相当。泛型，顾名思义就是泛化类型，什么是泛化类型？打个比方，我想在放松的时候听音乐，听音乐的中的音乐，就相当于一个泛化类型，指的并不是哪一首歌曲。在我放松的时候，你无论给我什么音乐，我都能欣赏，这个音乐并没有指明具体的音乐类型或者曲目。当我真的要找音乐来听的时候，我就需要找到一个具体的音乐，这时候具体的音乐，就叫特化</p>
+<p>应用编程上的例子来说的话，就比如我现在有一个泛型List&lt;&gt;，我需要往里面存放指定类型的数据，我要向使用它，就必须先特化指定&lt;&gt;中存放的数据类型，我才能使用这个List。List&lt;&gt;就是泛化类型，List&lt;int&gt;就是特化之后</p>
+<p>所有泛型编程实体，都不能直接用于编程，在使用泛型实体之前，必须进行特化</p>
+<a id="more"></a>
+
+<p>泛型具有正交性：泛型类型（类/接口/委托/…）、泛型成员（属性/方法/字段/…）</p>
+<p>正交性：由于泛型和其他编程实体都有正交点</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">泛型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">类</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">接口</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">委托</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">方法</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">属性</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">字段</td>
+<td align="center">Yes</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">Yes</td>
+</tr>
+</tbody></table>
+<p>泛型和类有正交，正交的结果就是泛型类，泛型和接口有正交，正交出来的结果就是泛型接口…</p>
+<h2 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h2><p>为什么需要由泛型：</p>
+<ul>
+<li><p>避免成员膨胀或者类型膨胀</p>
+<ul>
+<li><p>类型膨胀</p>
+<p>假设现在有一个程序，实现的是商品购物，数据类型有商品和装商品的盒子。假设现在有苹果和书两种商品，需要一个盒子来装商品，且一次只装一个的话，就需要定义两个盒子类，一个包含Apple字段，一个包含Book字段，可见，本应该一个Box类就可以解决的，现在却定义了两个Box类，这就是类型膨胀</p>
+</li>
+<li><p>成员膨胀</p>
+<p>为了结局上面说的哪个问题，另一种方法，就是定义一个Box类，然后这个Box类包含商店中所有商品的字段属性，也可以解决包装商品问题，但是这又导致了另一个问题，一个类中包含过多成员字段，且我们只使用其中的某一个字段属性，这就是成员膨胀</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>使用泛型既可以解决上述问题：</p>
+<p>​    在构建泛型类的时候，需要在类型后使用一对&lt;&gt;，在&lt;&gt;中写上类型参数。&lt;&gt;中就代表了一个泛化类型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Class Box&lt;TCargo&gt;&#123;</span><br><span class="line">	public TCargo Cargo &#123;get , set&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在使用泛型实体前，需要进行特化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Apple apple &#x3D; new Apple();</span><br><span class="line">Box&lt;Apple&gt; box &#x3D; new Box&lt;Apple&gt;()&#123;Cargo &#x3D; apple&#125;;			&#x2F;&#x2F;特化</span><br></pre></td></tr></table></figure>
+
+<p>​    使用泛型就完美的结局了商品盒子的问题，在我想要包装Apple的时候，我只需要将Box特化为只用于装Apple的对象，需要装Book的时候，只需要将Box特化为装Book的对象即可。当我在&lt;&gt;传入指定类型的时候，其实编译器就会将TCargo替换为指定的数据类型</p>
+<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p>如果一个类实现的是未特化的泛型接口，那么这个类本身也是泛型的，如果实现的是特化后的泛型接口，则类本身就不是泛型类了</p>
+<p>比如假设有一个ID接口，暂时不确定需要什么类型的ID，可能是String，也可能是Int，或者其他</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">interface IUnique&lt;TID&gt;</span><br><span class="line">&#123;</span><br><span class="line">	TID ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现未特化的泛型接口，此时类也是泛型类，使用该类的时候就需要特化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Student&lt;TID&gt; : IUnique&lt;TID&gt;</span><br><span class="line">&#123;</span><br><span class="line">	public TID ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现特化后的泛型接口，此时类不是泛型类，使用时和普通类一样使用即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Student : IUnique&lt;ulong&gt;</span><br><span class="line">&#123;</span><br><span class="line">	public ulong ID &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h2><p>使用泛型方法后，其功能相当于有多个重载方法，但是代码会少很多，避免了方法膨胀</p>
+<p>使用语法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">T Fun&lt;T&gt;(T a, T b);		&#x2F;&#x2F;T也可以是其他确定的类型，根据需要自行修改</span><br></pre></td></tr></table></figure>
+
+<p>使用时不需要显式的特化方法，在传参的时候编译器能自动推断，即不需要Fun<double>(d_a1 , d_a2);  只需要Fun(d_a1 , d_a2)</p>
+<p>示例：该示例实现的是将相同数据类型的数组合并在一起</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Program</span><br><span class="line">&#123;</span><br><span class="line">	static void Main(string[] args)</span><br><span class="line">	&#123;</span><br><span class="line">		int[] a1 &#x3D; &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line">		int[] a2 &#x3D; &#123; 1, 2, 3, 4, 5, 6&#125;;</span><br><span class="line">		double[] a3 &#x3D; &#123; 1.1, 2.2, 3.3, 4.4, 5.5 &#125;;</span><br><span class="line">		double[] a4 &#x3D; &#123; 1.1, 2.2, 3.3, 4.4, 5.5 ,6.6&#125;;</span><br><span class="line">		var res &#x3D; Zip(a3, a4);</span><br><span class="line">		Console.WriteLine(string.Join(&quot;,&quot;,res));</span><br><span class="line">		Console.ReadLine();</span><br><span class="line">	&#125;</span><br><span class="line">				</span><br><span class="line">	static T[] Zip&lt;T&gt;(T[] a, T[] b)		</span><br><span class="line">	&#123;</span><br><span class="line">		T[] zipped &#x3D; new T[a.Length + b.Length];</span><br><span class="line">		int ai &#x3D; 0, bi &#x3D; 0, zi &#x3D; 0;</span><br><span class="line">		do&#123;</span><br><span class="line">			if (ai &lt; a.Length) zipped[zi++] &#x3D; a[ai++];</span><br><span class="line">			if (bi &lt; b.Length) zipped[zi++] &#x3D; b[bi++];</span><br><span class="line">		&#125; while (ai &lt; a.Length || bi &lt; b.Length);</span><br><span class="line">		return zipped;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型委托"><a href="#泛型委托" class="headerlink" title="泛型委托"></a>泛型委托</h2><p>自定义的泛型委托</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delegate T deg&lt;T&gt;(T arg);		&#x2F;&#x2F;delegate T(返回值) deg&lt;T&gt;(T arg（参数）);	</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;当特化成deg&lt;int&gt;之后，相当于使用了</span><br><span class="line">delegate int deg(int arg);</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">delegate T NumberChanger&lt;T&gt;(T n);</span><br><span class="line">namespace GenericDelegateAppl</span><br><span class="line">&#123;</span><br><span class="line">    class TestDelegate</span><br><span class="line">    &#123;</span><br><span class="line">        static int num &#x3D; 10;</span><br><span class="line">        public static int AddNum(int p)</span><br><span class="line">        &#123;</span><br><span class="line">            num +&#x3D; p;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public static int MultNum(int q)</span><br><span class="line">        &#123;</span><br><span class="line">            num *&#x3D; q;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line">        public static int getNum()</span><br><span class="line">        &#123;</span><br><span class="line">            return num;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; 创建委托实例</span><br><span class="line">            NumberChanger&lt;int&gt; nc1 &#x3D; new NumberChanger&lt;int&gt;(AddNum);</span><br><span class="line">            NumberChanger&lt;int&gt; nc2 &#x3D; new NumberChanger&lt;int&gt;(MultNum);</span><br><span class="line">            &#x2F;&#x2F; 使用委托对象调用方法</span><br><span class="line">            nc1(25);</span><br><span class="line">            Console.WriteLine(&quot;Value of Num: &#123;0&#125;&quot;, getNum());</span><br><span class="line">            nc2(5);</span><br><span class="line">            Console.WriteLine(&quot;Value of Num: &#123;0&#125;&quot;, getNum());</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用自带的Func&lt;&gt;与Action&lt;&gt;</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Func&lt;double,double,double&gt; func1 &#x3D; Add;</span><br><span class="line">	&#x2F;&#x2F;	…</span><br><span class="line">static double add(double a, double b)</span><br><span class="line">&#123;</span><br><span class="line">	return a + b;</span><br><span class="line">&#125;，</span><br></pre></td></tr></table></figure>
+
+<p>在某些时候，如果我们使用的方法就像Add那么简单，也可以使用Lambda表达式（对于逻辑简单的方法，不想声明它，而是匿名地随调用随声明）</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Func&lt;double ,double,double&gt; func1 &#x3D; (double a , double b) &#x3D;&gt; &#123;return a + b;&#125;;</span><br><span class="line">(double a,double b) 中的数据类型double可以去掉，因为在类型参数&lt;&gt;中已经规定了a与b的数据类型，可以省略不写，即可以改成：</span><br><span class="line">Func&lt;double ,double,double&gt; func1 &#x3D; (a , b) &#x3D;&gt; &#123;return a + b;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>partial类</p>
+<ul>
+<li><p>partial是局部类型的意思，同一个类型的各个部分都必须有，修饰符在编译的时候仍会将各个部分的局部类型合并成一个完整的类</p>
+</li>
+<li><p>partial的限制</p>
+<ul>
+<li>局部类型只适用于类、接口、结构，不支持委托和枚举</li>
+<li>同一个类型的各个部分必须都有修饰符partial</li>
+<li>使用局部类型时，一个类型的各个部分必须位于相同的命名空间中</li>
+<li>一个类型的各个部分必须同时编译</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+        <tag>泛型</tag>
+        <tag>部分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚幻引擎笔记</title>
+    <url>/2020/06/05/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="暂时先这样写"><a href="#暂时先这样写" class="headerlink" title="暂时先这样写"></a>暂时先这样写</h1><ul>
+<li>正文日后补上</li>
+</ul>
+<a id="more"></a>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>虚幻引擎</tag>
+        <tag>游戏开发</tag>
+        <tag>C++</tag>
+        <tag>蓝图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>next主题的安装使用 ···持续更新</title>
+    <url>/2020/06/06/next%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="安装并启用next主题"><a href="#安装并启用next主题" class="headerlink" title="安装并启用next主题"></a>安装并启用next主题</h1><h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><p>&ensp;&ensp;首先在终端进入blog目录<br>&ensp;&ensp;输入命令：（务必确定是在博客根目录下，可使用 <strong>pwd</strong> 查看路径）</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件启用next主题"><a href="#修改配置文件启用next主题" class="headerlink" title="修改配置文件启用next主题"></a>修改配置文件启用next主题</h2><p>&ensp;&ensp;在博客的根目录下找到 <strong>_config.yml</strong> ，使用编辑器打开(推荐使用vs code)<br><img src="https://raw.githubusercontent.com/pink-star/image/master/config.png" alt=""><br>&ensp;&ensp;在大概80-100行之间找到<br>&ensp;&ensp; <strong>theme: landscape</strong><br>&ensp;&ensp;将其改为 <strong>theme: next</strong>即可启用主题</p>
+<h2 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h2><ul>
+<li><p>清楚缓存&ensp;&ensp;（这样做是为了清除缓存文件 (db.json) 和已生成的静态文件 (public)。当有时发现hexo s怎么也看不到变化时候，可能需要clean再generate一下） </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
+<li><p>重新构建 &ensp;&ensp;（用于生成静态文件 ） </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务  (本地预览查看效果)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>然后可以到浏览器打开localhost:4000查看效果。如下图：<br><img src="https://raw.githubusercontent.com/pink-star/image/master/next.png" alt=""><br>next主题的安装就结束了</p>
+<h1 id="next主题美化"><a href="#next主题美化" class="headerlink" title="next主题美化"></a>next主题美化</h1><h2 id="基本信息更改"><a href="#基本信息更改" class="headerlink" title="基本信息更改"></a>基本信息更改</h2><p>&ensp;&ensp;在根目录下的 <strong>_config.yml</strong> 找到<strong>Site</strong>字段，按照自己需要进行更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/site.jpg" alt=""><br>title: 标题<br>subtitle: 副标题<br>description: 描述<br>keywords: 关键词<br>author: 作者<br>language: 语言（中文是zh-CN）<br>timezone: 网站时区(不填即可)<br>更改玩后clean一下重新构建即可看到效果</p>
+<h2 id="更改主题样式"><a href="#更改主题样式" class="headerlink" title="更改主题样式"></a>更改主题样式</h2><p>next提供了四种主题样式，我们可以在next文件夹下的 <strong>config.yml</strong>进修修改即可<br>在 <strong>config.yml</strong> 中找到 Scheme Settings字段，想要启用哪一种样式，只需要将其他注释掉，将想要展示的样式前的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/shame.jpg" alt=""></p>
+<h2 id="菜单配置"><a href="#菜单配置" class="headerlink" title="菜单配置"></a>菜单配置</h2><p>刚开始的默认菜单只开启了”首页”和”归档两个”，为了开启其他的菜单项<br>打开根目录下的 <strong>_config.yml</strong> 找到 <strong>Menu Settings</strong> 将需要开启的菜单项前面的#去掉即可  </p>
+<p><img src="https://raw.githubusercontent.com/pink-star/image/master/1591449707(1).png" alt=""></p>
+<p>但此时点击其他菜单项是没有东西显示的，这是我们需要新建一些页面,终端中输入</p>
+<ul>
+<li>创建标签页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
+<li>创建分类页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
+这时source文件夹下有了categorcies和tags两个文件夹，打开里面的index.md文件进行编辑<br>添加  type: tags字段，categories就文件夹下的就改为categories即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/targ.jpg" alt=""><br>这时点击响应菜单栏就可以打开了</li>
+</ul>
+<p>以后写文章只需要添加<br>tags:<br>  - 标签1<br>  - 标签2<br>  …<br>categories: xxx<br>即会自动添加标签和进行分类  </p>
+<h2 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h2><p>打开next目录下的 <strong>config.yml</strong> 文件，找到<strong>Sidebar Avatar</strong>字段，按照需要更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/head.jpg" alt=""><br>url: 头像的路径<br>rounded: true （true时，头像为圆形，false时为方形）<br>rotate: true （true时，鼠标移动到头像上方头像会旋转，离开时回到原位）  </p>
+<h2 id="设置侧边社交栏"><a href="#设置侧边社交栏" class="headerlink" title="设置侧边社交栏"></a>设置侧边社交栏</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Social Links字段，将想要链接的那一栏的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/link.jpg" alt=""><br>还可以增加自定义链接，如增加一个BiliBili个人空间的链接：<br>BiliBili: 你的空间地址 || fab fa-对应图标<br>图标可以到<a href="http://www.fontawesome.com.cn/faicons/" target="_blank" rel="noopener">Font Awesome</a>中找到  </p>
+<h2 id="设置友联"><a href="#设置友联" class="headerlink" title="设置友联"></a>设置友联</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Blog rolls字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/friend.jpg" alt=""><br>需要更改自己需要的字段即可<br>  icon: fa fa-link  （友链图标）<br>  title: Links  （你的友链的名称，如我的友链叫友人帐）<br>  layout: block  (样式，提供了两个，喜欢哪个用哪个)<br>  Title: <a href="http://yoursite.com">http://yoursite.com</a>  (Title为要增加的的友链的名称，后面为对应的链接地址)  </p>
+<h2 id="开启打赏功能"><a href="#开启打赏功能" class="headerlink" title="开启打赏功能"></a>开启打赏功能</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Reward 字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/reward.jpg" alt=""><br>enable: 字段为true则默认开启打赏功能<br>animation: 字段则是当鼠标移动到付款码上方文字会有一个抖动效果<br>接着按照自己的需要开启自己需要的支付方式即可  </p>
+<h2 id="添加Fork-Github"><a href="#添加Fork-Github" class="headerlink" title="添加Fork Github"></a>添加Fork Github</h2><p>首先我们打开<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corner</a>，选择一个自己喜欢的样式，然后复制相应代码<br>接下来打开next文件下下的layout文件下的_layout.swig文件，找到  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;headband&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<p>将刚刚复制的代码粘贴到他后面，然后将刚刚复制的代码的中的<br><strong><a href="https://your-url" target="_blank" rel="noopener">https://your-url</a></strong>改为自己的GitHub地址即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/frok.jpg" alt=""><br>然后重新clean一下再构建，即可看见效果  </p>
+<h2 id="修改文章底部标签样式"><a href="#修改文章底部标签样式" class="headerlink" title="修改文章底部标签样式"></a>修改文章底部标签样式</h2><p>打开next/layout/_macro下的 <strong>post.swig</strong> 文件，找到footer字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footer.jpg" alt=""><br>然后将 改为 </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;i class &#x3D; &quot;fa fa-tag&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
+<p>“fa fa-tag”根据需要自行更换</p>
+<h2 id="启用Valine评论功能"><a href="#启用Valine评论功能" class="headerlink" title="启用Valine评论功能"></a>启用Valine评论功能</h2><p>首先打开 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud官网</a>,注册一个账号，然后创建一个应用<br>找到该界面，辅助AppID,AppKey<br><img src="https://raw.githubusercontent.com/pink-star/image/master/vline.png" alt=""><br>打开next文件夹下的 <strong>_config.yml</strong> 找到 <strong>Valine</strong>字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/appkey.jpg" alt=""><br>将enable字段改为true，并且将刚刚复制AppKey，和AppID粘贴到对应栏即可</p>
+<h2 id="启用搜索功能"><a href="#启用搜索功能" class="headerlink" title="启用搜索功能"></a>启用搜索功能</h2><p>next主题集成了Swiftype、 微搜索、Local Search 和 Algolia，大家有需要可以自行搜索其他的，这里只演示local search如何开启</p>
+<ul>
+<li><p>在博客根目录下打开终端，运行下命令来安装 <strong>hexo-generator-searchdb</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开博客根目录下的 <strong>_config.yml</strong> 文件，<strong>添加</strong>下列字段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></li>
+<li><p>打开next目录下的 <strong>_config.yml</strong> 文件，找到 <strong>local_search</strong> 字段，将enable字段值改为true就大功告成了<img src="https://raw.githubusercontent.com/pink-star/image/master/localsearch.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="增加内容分享功能"><a href="#增加内容分享功能" class="headerlink" title="增加内容分享功能"></a>增加内容分享功能</h2><ul>
+<li>首先在<a href="https://www.addthis.com/" target="_blank" rel="noopener">Addthis官网</a>注册登录，然后网站会叫你选择功能，选择share button即可。   </li>
+<li>然后打开个人资料设置，将里面的编号复制下来<img src="https://raw.githubusercontent.com/pink-star/image/master/bh.jpg" alt=""></li>
+<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到add_this_id字段，将刚刚复制的编号粘贴进去即可<img src="https://raw.githubusercontent.com/pink-star/image/master/addthisid.jpg" alt=""></li>
+</ul>
+<h2 id="将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏"><a href="#将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏" class="headerlink" title="将底部的由 Hexo &amp; NexT.Pisces 强力驱动隐藏"></a>将底部的<strong>由 Hexo &amp; NexT.Pisces 强力驱动</strong>隐藏</h2><p>打开<strong>Blog/themes/next/layout/_partials</strong>文件夹下的<strong>footer.swig</strong>文件<br>找到<strong>theme.footer.powered</strong>字段，将这一大段代码注释掉或者删除即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footswig.jpg" alt=""></p>
+<h2 id="背景图片、透明度等自定义美化效果"><a href="#背景图片、透明度等自定义美化效果" class="headerlink" title="背景图片、透明度等自定义美化效果"></a>背景图片、透明度等自定义美化效果</h2><ul>
+<li>打开博客根目录下的source文件夹，在里面新建一个_data文件夹，并创建一个<strong>styles.styl</strong>文件</li>
+<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到custom_file_path字段，将最后一行的style注释去掉即可<img src="https://raw.githubusercontent.com/pink-star/image/master/custom.jpg" alt=""></li>
+<li>这时我们就可以在<strong>styles.styl</strong>文件夹下自行添加css语句来自定义样式了，比如添加背景图片<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(你的图片路径);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C#委托与事件</title>
     <url>/2020/10/11/C-%E5%A7%94%E6%89%98%E4%B8%8E%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<h1 id="C-委托"><a href="#C-委托" class="headerlink" title="C#委托"></a>C#委托</h1><p><strong>C#中的委托，其实就是C++中函数指针的升级版</strong></p>
@@ -446,331 +1056,6 @@
         <tag>C#</tag>
         <tag>委托</tag>
         <tag>事件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#面向对象</title>
-    <url>/2020/10/11/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<h1 id="C-结构体与类"><a href="#C-结构体与类" class="headerlink" title="C#结构体与类"></a>C#结构体与类</h1><p>类和结构有以下几个基本的不同点：</p>
-<ul>
-<li>类是引用类型，结构是值类型</li>
-<li>结构不支持继承</li>
-<li>结构不能声明默认的（即无参）构造函数</li>
-<li>结构体中声明的字段无法赋予初值，类可以</li>
-<li>结构是值类型，它在栈中分配空间；而类是引用类型，它在堆中分配空间，栈中保存的只是引用</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="C-类"><a href="#C-类" class="headerlink" title="C#类"></a>C#类</h2><hr>
-<p>类的三大成员<br>{<br>    <strong>属性</strong>    (成员变量)<br>    <strong>方法</strong>    (成员函数)<br>    <strong>事件</strong>    (类或对象通知其他类或对象的机制，为C#独有，如窗体程序的Click事件)<br>}  </p>
-<hr>
-<p>成员的静态、动态<br>{<br>    静态成员是类的成员<br>    实例(非静态)成员是对象的成员<br>}  </p>
-<p>程序的静态、动态<br>{<br>    程序未执行是，称为程序的静态(编辑期和编译期)，执行起来时，称为程序的动态或执行时期(运行器)<br>    静态程序在硬盘（外存）中，动态程序在内存中<br>}  </p>
-<hr>
-<h2 id="C-类的静态成员"><a href="#C-类的静态成员" class="headerlink" title="C# 类的静态成员"></a>C# 类的静态成员</h2><ul>
-<li>可以使用 static 关键字把类成员定义为静态的。当声明一个类成员为静态时，意味着无论有多少个类的对象被创建，只会有一个该静态成员的副本</li>
-<li>把一个成员函数声明为 static。这样的函数只能访问静态变量。静态函数在对象被创建之前就已经存在</li>
-</ul>
-<h2 id="C-属性"><a href="#C-属性" class="headerlink" title="C#属性"></a>C#属性</h2><p>属性：（类似字段）</p>
-<ul>
-<li><p>属性是一种用于访问对象或类型特征的成员，特征反映了状态</p>
-</li>
-<li><p>一个类可以设置多个属性</p>
-</li>
-<li><p>属性大多数情况下是字段的包装器，建议只使用属性来暴露数据，字段设置为private和protected</p>
-</li>
-<li><p>字段可能会被非法数据污染，而属性可以通过逻辑写法避免</p>
-</li>
-</ul>
-<p>语法：</p>
-<p>​        特性(可选)  修饰符  类型  成员名称  { get与set }</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Int public age;</span><br><span class="line">Public int Age</span><br><span class="line">&#123;</span><br><span class="line">	get&#123;</span><br><span class="line">		return age;</span><br><span class="line">		&#125;</span><br><span class="line">	set&#123;</span><br><span class="line">		age &#x3D; value;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在VS中可以快速的写好完整的属性声明，可以敲击propfull，然后连续敲击两次Tap键，即可自动生成完整的属性声明代码</p>
-<h2 id="C-索引器"><a href="#C-索引器" class="headerlink" title="C#索引器"></a>C#索引器</h2><p>索引器得对象能够使用与数组下同的方式（即下标）进行索引，</p>
-<p>索引器（Indexer）可被重载。索引器声明的时候也可带有多个参数，且每个参数可以是不同的类型，索引器（Indexer）可被重载。索引器声明的时候也可带有多个参数，且每个参数可以是不同的类型</p>
-<p>语法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">element-type this[int index]</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; get 访问器</span><br><span class="line">   get&#123;</span><br><span class="line">      &#x2F;&#x2F; 返回 index 指定的值</span><br><span class="line">   &#125;</span><br><span class="line">    </span><br><span class="line">   &#x2F;&#x2F; set 访问器</span><br><span class="line">   set&#123;</span><br><span class="line">      &#x2F;&#x2F; 设置 index 指定的值</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>索引器的行为的声明在某种程度上类似于属性（property）。定义一个属性（property）包括提供属性名称。索引器定义的时候不带有名称，但带有 <strong>this</strong> 关键字，它指向对象实例</p>
-<p>例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class IndexedNames</span><br><span class="line">&#123;</span><br><span class="line">    private string[] namelist &#x3D; new string[size];</span><br><span class="line">    static public int size &#x3D; 10;</span><br><span class="line">    public IndexedNames()</span><br><span class="line">    &#123;</span><br><span class="line">        for (int i &#x3D; 0; i &lt; size; i++)</span><br><span class="line">            namelist[i] &#x3D; &quot;N. A.&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public string this[int index]</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            string tmp;</span><br><span class="line"></span><br><span class="line">            if (index &gt;&#x3D; 0 &amp;&amp; index &lt;&#x3D; size - 1)</span><br><span class="line">            &#123;</span><br><span class="line">                tmp &#x3D; namelist[index];</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                tmp &#x3D; &quot;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return (tmp);</span><br><span class="line">        &#125;</span><br><span class="line">        set</span><br><span class="line">        &#123;</span><br><span class="line">            if (index &gt;&#x3D; 0 &amp;&amp; index &lt;&#x3D; size - 1)</span><br><span class="line">            &#123;</span><br><span class="line">                namelist[index] &#x3D; value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="C-继承"><a href="#C-继承" class="headerlink" title="C#继承"></a>C#继承</h2><p>一个类可以派生自类、多个接口<br>C#不支持多继承，但是可以使用接口来实现多继承</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;访问修饰符符&gt; class &lt;基类&gt;</span><br><span class="line">&#123;</span><br><span class="line">	 ...</span><br><span class="line">&#125;</span><br><span class="line">&lt;访问修饰符符&gt; interface &lt;接口&gt;</span><br><span class="line">&#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br><span class="line">class &lt;派生类&gt; : &lt;基类&gt; , &lt;接口&gt;</span><br><span class="line">&#123;</span><br><span class="line">	 ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>示例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class shape</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br><span class="line">public interface cost</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br><span class="line">Class Rectangle : shape , cost</span><br><span class="line">&#123;</span><br><span class="line">	….</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="C-多态"><a href="#C-多态" class="headerlink" title="C#多态"></a>C#多态</h2><h3 id="静态多态性质"><a href="#静态多态性质" class="headerlink" title="静态多态性质"></a>静态多态性质</h3><ul>
-<li>函数重载<br>函数的定义必须彼此不同，可以是参数列表中的参数类型不同，也可以是参数个数不同。但是不能重载只有返回类型不同的函数声明</li>
-<li>运算符重载<ul>
-<li>重载运算符是具有特殊名称的函数，是通过关键字 operator 后跟运算符的符号来定义的。与其他函数一样，重载运算符有返回类型和参数列表</li>
-<li>C#要求所有的运算符重载都声明为public和static，这表示它们与它们的类或结构相关联，而不是与实例相关联</li>
-<li>可重载和不可重载运算符表</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">运算符</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">+, -, !, ~, ++, –</td>
-<td align="center">这些一元运算符只有一个操作数，且可以被重载</td>
-</tr>
-<tr>
-<td align="center">+, -, *, /, %</td>
-<td align="center">这些二元运算符带有两个操作数，且可以被重载</td>
-</tr>
-<tr>
-<td align="center">==, !=, &lt;, &gt;, &lt;=, &gt;=</td>
-<td align="center">这些比较运算符可以被重载</td>
-</tr>
-<tr>
-<td align="center">&amp;&amp;, | |</td>
-<td align="center">这些条件逻辑运算符不能被直接重载</td>
-</tr>
-<tr>
-<td align="center">+=, -=, *=, /=, %=</td>
-<td align="center">这些赋值运算符不能被重载</td>
-</tr>
-<tr>
-<td align="center">=, ., ?:, -&gt;, new, is, sizeof, typeof</td>
-<td align="center">这些运算符不能被重载</td>
-</tr>
-</tbody></table>
-<h3 id="动态多态性"><a href="#动态多态性" class="headerlink" title="动态多态性"></a>动态多态性</h3><ul>
-<li>使用抽象类<br>  使用关键字 abstract 创建抽象类、抽象方法，用于提供接口的部分类的实现  <ul>
-<li>不能创建一个抽象类的实例</li>
-<li>不能在一个抽象类外部声明一个抽象方法</li>
-<li>一个抽象类可以同时包含抽象方法和非抽象方法</li>
-<li>抽象方法只在派生类中真正实现，这表明抽象方法只存放函数原型，不涉及主体代码</li>
-<li>在类定义前面放置关键字sealed可以将类声明为密封类，密封类不能被继承，故抽象类不能被声明为sealed</li>
-</ul>
-</li>
-</ul>
-<p><strong>子类继承抽象类时需要使用override来重写方法，override只能重写抽象方法和虚方法，抽象类也不能被多继承</strong></p>
-<ul>
-<li>使用虚方法<br>  当有一个定义在类中需要在继承类中实现时，可使用虚方法<ul>
-<li>关键字：vitual</li>
-<li>虚方法可以在不同类中有不同的个实现</li>
-<li>动态多态性是通过抽象类和虚方法实现的</li>
-</ul>
-</li>
-</ul>
-<h1 id="C-接口"><a href="#C-接口" class="headerlink" title="C#接口"></a>C#接口</h1><p>声明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;访问修饰符符&gt; interface &lt;接口名&gt;</span><br><span class="line">&#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用interface声明接口，与类的声明类似，接口声明默认是public，在namespace中类默认为internal权限</li>
-<li>如果两个接口中有完全相同的签名，那么可以用“接口名.方法名”的方法显式的来实现接口</li>
-<li>抽象类可以实现接口，而且可以<strong>只实现部分</strong>接口。</li>
-<li>接口做为参数传递，传递的是实现了接口的对象；</li>
-<li>接口作为类型返回，返回的是实现了接口的对象。</li>
-</ul>
-<h1 id="C-命名空间"><a href="#C-命名空间" class="headerlink" title="C#命名空间"></a>C#命名空间</h1><ul>
-<li>using static<br>  using static指令可以直接访问静态成员类型，如:  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using static System.Math;</span><br><span class="line">Var I &#x3D; PI;</span><br><span class="line">                </span><br><span class="line">using static System.console;</span><br><span class="line">Writeline(&quot;xxx&quot;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    </span><br><span class="line">* 命名空间别名</span><br><span class="line">    可以使用别名替代原命名空间名</span><br><span class="line">    &#96;&#96;&#96;c#</span><br><span class="line">    using 别名 &#x3D; 指定命名空间名</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="C-枚举"><a href="#C-枚举" class="headerlink" title="C#枚举"></a>C#枚举</h1><p>声明枚举的一般语法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enum &lt;enum_name&gt;</span><br><span class="line">&#123; </span><br><span class="line">    enumeration list   &#x2F;&#x2F;enumeration list 是一个用逗号分隔的标识符列表</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F;示例</span><br><span class="line">enum Days &#123; Sun, Mon, tue, Wed, thu, Fri, Sat &#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="C-不安全代码块"><a href="#C-不安全代码块" class="headerlink" title="C#不安全代码块"></a>C#不安全代码块</h1><p>在C#中，如果想使用指针，需要在方法前添加unsafe关键字，或者使用<br>unsafe{<br>    xxxxx<br>}<br>如果想使用unsafe代码块，需要在PROJECT栏的Stackoverflow 中的Build里勾选Allow unsafe code  </p>
-<h1 id="C-预处理指令"><a href="#C-预处理指令" class="headerlink" title="C#预处理指令"></a>C#预处理指令</h1><p>C#预处理指令，用于在条件编译中起作用，与C和C++不同的是，C#的预处理指令不是用来创建宏的</p>
-<p>C#预处理指令列表：<br>|预处理指令|描述|<br>|:–|:–|<br>|#define|C#预处理指令|<br>|#undef|它用于取消定义符号|<br>|#if|它用于测试符号是否为真|<br>|#else|它用于创建复合条件指令，与 #if 一起使用|<br>|#elif|它用于创建复合条件指令|<br>|#endif|指定一个条件指令的结束|<br>|#line|它可以让您修改编译器的行数以及（可选地）输出错误和警告的文件名|<br>|#error|它允许从代码的指定位置生成一个错误|<br>|#warning|它允许从代码的指定位置生成一级警告|<br>|#region|它可以让您在使用 Visual Studio Code Editor 的大纲特性时，指定一个可展开或折叠的代码块|<br>|#endregion|它标识着 #region 块的结束|</p>
-<ul>
-<li><p>#define 预处理器<br>可以定义一个符号，然后如果传递给#if指令的表达式，表达式会返回true，说明该符号已定义<br>例：</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#define PI</span><br><span class="line">using System;</span><br><span class="line">namespace PreprocessorDAppl</span><br><span class="line">&#123;</span><br><span class="line">    class Program</span><br><span class="line">    &#123;</span><br><span class="line">        static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            #if (PI)</span><br><span class="line">            Console.WriteLine(&quot;PI is defined&quot;);</span><br><span class="line">            #else</span><br><span class="line">            Console.WriteLine(&quot;PI is not defined&quot;);</span><br><span class="line">            #endif</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>条件指令<br>可以用 #If来创建一个条件指令，条件指令用于测试符号是否为真。类似与if的使用方法,<strong>一个以 #if 指令开始的条件指令，必须显示地以一个 #endif 指令终止！</strong></p>
-</li>
-<li><p>#warning和#error：<br>当编译器遇到#warning指令时，会给用户显示#warning指令后面的文本<br>当编译器遇到#error指令时，会给用户显示#error指令后面的文本，并立即退出编译<br>示例：</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#if DEBUG &amp;&amp; RELEASE  </span><br><span class="line">#error &quot;You&#39;ve defined DEBUG and RELEASE simultaneously!&quot;  </span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#warning &quot;Don&#39;t forget to remove this line before the boss tests the code!&quot;  </span><br><span class="line">Console.WriteLine(&quot;*I hate this job.*&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>#region和#endredgion<br>这两个指令用于把一段代码标记为有给定名称的一个块，它不影响编译过程，优点是可以被某些编辑器识别，可以使代码在屏幕上更好的布局</p>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#region Member Field Declarations</span><br><span class="line">int x;</span><br><span class="line">double d;</span><br><span class="line">Currency balance;</span><br><span class="line">#endregion</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="C-异常处理"><a href="#C-异常处理" class="headerlink" title="C#异常处理"></a>C#异常处理</h1><p>C#的异常处理建立在：try、catch、finally和throw上</p>
-<ul>
-<li>try：一个try块标识了一个将被激活的特定的异常的代码块，后跟一个或者多个catch块</li>
-<li>catch：程序通过异常处理程序捕获异常。catch关键字表示异常的捕获</li>
-<li>finally：finally块用于执行给定的语句，不管异常是否被抛出都会执行</li>
-<li>throw：当问题出现时，程序抛出异常，使用throw关键字来完成</li>
-</ul>
-<p>使用try/catch的语法如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 引起异常的语句</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName e1 )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName e2 )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	catch( ExceptionName en )</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 错误处理代码</span><br><span class="line">	&#125;</span><br><span class="line">	finally</span><br><span class="line">	&#123;</span><br><span class="line">	   &#x2F;&#x2F; 要执行的语句</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="C-中的异常类"><a href="#C-中的异常类" class="headerlink" title="C#中的异常类"></a>C#中的异常类</h1><ul>
-<li>C# 中的异常类主要是直接或间接地派生于 System.Exception 类</li>
-<li>System.ApplicationException 和 System.SystemException 类是派生于 System.Exception 类的异常类<ul>
-<li>System.ApplicationException 类支持由应用程序生成的异常。所有程序员定义的异常都应派生自该类</li>
-<li>System.SystemException 类是所有预定义的系统异常的基类</li>
-</ul>
-</li>
-</ul>
-<p>自定义异常类<br>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户可以自定义异常类，异常类继承自ApplicationException类<br>示例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">using System;</span><br><span class="line">namespace UserDefinedException</span><br><span class="line">&#123;</span><br><span class="line">   class TestTemperature</span><br><span class="line">   &#123;</span><br><span class="line">      static void Main(string[] args)</span><br><span class="line">      &#123;</span><br><span class="line">         Temperature temp &#x3D; new Temperature();</span><br><span class="line">         try</span><br><span class="line">         &#123;</span><br><span class="line">            temp.showTemp();</span><br><span class="line">         &#125;</span><br><span class="line">         catch(TempIsZeroException e)</span><br><span class="line">         &#123;</span><br><span class="line">            Console.WriteLine(&quot;TempIsZeroException: &#123;0&#125;&quot;, e.Message);</span><br><span class="line">         &#125;</span><br><span class="line">         Console.ReadKey();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class TempIsZeroException: ApplicationException</span><br><span class="line">&#123;</span><br><span class="line">   &#x2F;&#x2F;继承自ApplicationException类，创建参数为字符串类型的构造函数</span><br><span class="line">   public TempIsZeroException(string message): base(message)</span><br><span class="line">   &#123;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Temperature</span><br><span class="line">&#123;</span><br><span class="line">   int temperature &#x3D; 0;</span><br><span class="line">   public void showTemp()      &#x2F;&#x2F;显示函数，在temperature &#x3D; 0时抛出异常，否则正常打印</span><br><span class="line">   &#123;</span><br><span class="line">      if(temperature &#x3D;&#x3D; 0)</span><br><span class="line">      &#123;</span><br><span class="line">         throw (new TempIsZeroException(&quot;Zero Temperature found&quot;));</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">         Console.WriteLine(&quot;Temperature: &#123;0&#125;&quot;, temperature);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-        <tag>面向对象</tag>
-        <tag>异常处理</tag>
-        <tag>预处理指令</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/06/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>next主题的安装使用 ···持续更新</title>
-    <url>/2020/06/06/next%E4%B8%BB%E9%A2%98%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="安装并启用next主题"><a href="#安装并启用next主题" class="headerlink" title="安装并启用next主题"></a>安装并启用next主题</h1><h2 id="安装next主题"><a href="#安装next主题" class="headerlink" title="安装next主题"></a>安装next主题</h2><p>&ensp;&ensp;首先在终端进入blog目录<br>&ensp;&ensp;输入命令：（务必确定是在博客根目录下，可使用 <strong>pwd</strong> 查看路径）</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-<h2 id="修改配置文件启用next主题"><a href="#修改配置文件启用next主题" class="headerlink" title="修改配置文件启用next主题"></a>修改配置文件启用next主题</h2><p>&ensp;&ensp;在博客的根目录下找到 <strong>_config.yml</strong> ，使用编辑器打开(推荐使用vs code)<br><img src="https://raw.githubusercontent.com/pink-star/image/master/config.png" alt=""><br>&ensp;&ensp;在大概80-100行之间找到<br>&ensp;&ensp; <strong>theme: landscape</strong><br>&ensp;&ensp;将其改为 <strong>theme: next</strong>即可启用主题</p>
-<h2 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h2><ul>
-<li><p>清楚缓存&ensp;&ensp;（这样做是为了清除缓存文件 (db.json) 和已生成的静态文件 (public)。当有时发现hexo s怎么也看不到变化时候，可能需要clean再generate一下） </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure></li>
-<li><p>重新构建 &ensp;&ensp;（用于生成静态文件 ） </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动服务  (本地预览查看效果)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>然后可以到浏览器打开localhost:4000查看效果。如下图：<br><img src="https://raw.githubusercontent.com/pink-star/image/master/next.png" alt=""><br>next主题的安装就结束了</p>
-<h1 id="next主题美化"><a href="#next主题美化" class="headerlink" title="next主题美化"></a>next主题美化</h1><h2 id="基本信息更改"><a href="#基本信息更改" class="headerlink" title="基本信息更改"></a>基本信息更改</h2><p>&ensp;&ensp;在根目录下的 <strong>_config.yml</strong> 找到<strong>Site</strong>字段，按照自己需要进行更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/site.jpg" alt=""><br>title: 标题<br>subtitle: 副标题<br>description: 描述<br>keywords: 关键词<br>author: 作者<br>language: 语言（中文是zh-CN）<br>timezone: 网站时区(不填即可)<br>更改玩后clean一下重新构建即可看到效果</p>
-<h2 id="更改主题样式"><a href="#更改主题样式" class="headerlink" title="更改主题样式"></a>更改主题样式</h2><p>next提供了四种主题样式，我们可以在next文件夹下的 <strong>config.yml</strong>进修修改即可<br>在 <strong>config.yml</strong> 中找到 Scheme Settings字段，想要启用哪一种样式，只需要将其他注释掉，将想要展示的样式前的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/shame.jpg" alt=""></p>
-<h2 id="菜单配置"><a href="#菜单配置" class="headerlink" title="菜单配置"></a>菜单配置</h2><p>刚开始的默认菜单只开启了”首页”和”归档两个”，为了开启其他的菜单项<br>打开根目录下的 <strong>_config.yml</strong> 找到 <strong>Menu Settings</strong> 将需要开启的菜单项前面的#去掉即可  </p>
-<p><img src="https://raw.githubusercontent.com/pink-star/image/master/1591449707(1).png" alt=""></p>
-<p>但此时点击其他菜单项是没有东西显示的，这是我们需要新建一些页面,终端中输入</p>
-<ul>
-<li>创建标签页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure></li>
-<li>创建分类页<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-这时source文件夹下有了categorcies和tags两个文件夹，打开里面的index.md文件进行编辑<br>添加  type: tags字段，categories就文件夹下的就改为categories即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/targ.jpg" alt=""><br>这时点击响应菜单栏就可以打开了</li>
-</ul>
-<p>以后写文章只需要添加<br>tags:<br>  - 标签1<br>  - 标签2<br>  …<br>categories: xxx<br>即会自动添加标签和进行分类  </p>
-<h2 id="设置头像"><a href="#设置头像" class="headerlink" title="设置头像"></a>设置头像</h2><p>打开next目录下的 <strong>config.yml</strong> 文件，找到<strong>Sidebar Avatar</strong>字段，按照需要更改即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/head.jpg" alt=""><br>url: 头像的路径<br>rounded: true （true时，头像为圆形，false时为方形）<br>rotate: true （true时，鼠标移动到头像上方头像会旋转，离开时回到原位）  </p>
-<h2 id="设置侧边社交栏"><a href="#设置侧边社交栏" class="headerlink" title="设置侧边社交栏"></a>设置侧边社交栏</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Social Links字段，将想要链接的那一栏的#去掉即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/link.jpg" alt=""><br>还可以增加自定义链接，如增加一个BiliBili个人空间的链接：<br>BiliBili: 你的空间地址 || fab fa-对应图标<br>图标可以到<a href="http://www.fontawesome.com.cn/faicons/" target="_blank" rel="noopener">Font Awesome</a>中找到  </p>
-<h2 id="设置友联"><a href="#设置友联" class="headerlink" title="设置友联"></a>设置友联</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Blog rolls字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/friend.jpg" alt=""><br>需要更改自己需要的字段即可<br>  icon: fa fa-link  （友链图标）<br>  title: Links  （你的友链的名称，如我的友链叫友人帐）<br>  layout: block  (样式，提供了两个，喜欢哪个用哪个)<br>  Title: <a href="http://yoursite.com">http://yoursite.com</a>  (Title为要增加的的友链的名称，后面为对应的链接地址)  </p>
-<h2 id="开启打赏功能"><a href="#开启打赏功能" class="headerlink" title="开启打赏功能"></a>开启打赏功能</h2><p>打开next文件夹下的 <strong>config.yml</strong><br>找到Reward 字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/reward.jpg" alt=""><br>enable: 字段为true则默认开启打赏功能<br>animation: 字段则是当鼠标移动到付款码上方文字会有一个抖动效果<br>接着按照自己的需要开启自己需要的支付方式即可  </p>
-<h2 id="添加Fork-Github"><a href="#添加Fork-Github" class="headerlink" title="添加Fork Github"></a>添加Fork Github</h2><p>首先我们打开<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corner</a>，选择一个自己喜欢的样式，然后复制相应代码<br>接下来打开next文件下下的layout文件下的_layout.swig文件，找到  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;headband&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-<p>将刚刚复制的代码粘贴到他后面，然后将刚刚复制的代码的中的<br><strong><a href="https://your-url" target="_blank" rel="noopener">https://your-url</a></strong>改为自己的GitHub地址即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/frok.jpg" alt=""><br>然后重新clean一下再构建，即可看见效果  </p>
-<h2 id="修改文章底部标签样式"><a href="#修改文章底部标签样式" class="headerlink" title="修改文章底部标签样式"></a>修改文章底部标签样式</h2><p>打开next/layout/_macro下的 <strong>post.swig</strong> 文件，找到footer字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footer.jpg" alt=""><br>然后将 改为 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;i class &#x3D; &quot;fa fa-tag&quot;&gt;&lt;&#x2F;i&gt;</span><br></pre></td></tr></table></figure>
-<p>“fa fa-tag”根据需要自行更换</p>
-<h2 id="启用Valine评论功能"><a href="#启用Valine评论功能" class="headerlink" title="启用Valine评论功能"></a>启用Valine评论功能</h2><p>首先打开 <a href="https://leancloud.cn/" target="_blank" rel="noopener">leancloud官网</a>,注册一个账号，然后创建一个应用<br>找到该界面，辅助AppID,AppKey<br><img src="https://raw.githubusercontent.com/pink-star/image/master/vline.png" alt=""><br>打开next文件夹下的 <strong>_config.yml</strong> 找到 <strong>Valine</strong>字段<br><img src="https://raw.githubusercontent.com/pink-star/image/master/appkey.jpg" alt=""><br>将enable字段改为true，并且将刚刚复制AppKey，和AppID粘贴到对应栏即可</p>
-<h2 id="启用搜索功能"><a href="#启用搜索功能" class="headerlink" title="启用搜索功能"></a>启用搜索功能</h2><p>next主题集成了Swiftype、 微搜索、Local Search 和 Algolia，大家有需要可以自行搜索其他的，这里只演示local search如何开启</p>
-<ul>
-<li><p>在博客根目录下打开终端，运行下命令来安装 <strong>hexo-generator-searchdb</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开博客根目录下的 <strong>_config.yml</strong> 文件，<strong>添加</strong>下列字段</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  limit: 10000</span><br></pre></td></tr></table></figure></li>
-<li><p>打开next目录下的 <strong>_config.yml</strong> 文件，找到 <strong>local_search</strong> 字段，将enable字段值改为true就大功告成了<img src="https://raw.githubusercontent.com/pink-star/image/master/localsearch.jpg" alt=""></p>
-</li>
-</ul>
-<h2 id="增加内容分享功能"><a href="#增加内容分享功能" class="headerlink" title="增加内容分享功能"></a>增加内容分享功能</h2><ul>
-<li>首先在<a href="https://www.addthis.com/" target="_blank" rel="noopener">Addthis官网</a>注册登录，然后网站会叫你选择功能，选择share button即可。   </li>
-<li>然后打开个人资料设置，将里面的编号复制下来<img src="https://raw.githubusercontent.com/pink-star/image/master/bh.jpg" alt=""></li>
-<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到add_this_id字段，将刚刚复制的编号粘贴进去即可<img src="https://raw.githubusercontent.com/pink-star/image/master/addthisid.jpg" alt=""></li>
-</ul>
-<h2 id="将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏"><a href="#将底部的由-Hexo-amp-NexT-Pisces-强力驱动隐藏" class="headerlink" title="将底部的由 Hexo &amp; NexT.Pisces 强力驱动隐藏"></a>将底部的<strong>由 Hexo &amp; NexT.Pisces 强力驱动</strong>隐藏</h2><p>打开<strong>Blog/themes/next/layout/_partials</strong>文件夹下的<strong>footer.swig</strong>文件<br>找到<strong>theme.footer.powered</strong>字段，将这一大段代码注释掉或者删除即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/footswig.jpg" alt=""></p>
-<h2 id="背景图片、透明度等自定义美化效果"><a href="#背景图片、透明度等自定义美化效果" class="headerlink" title="背景图片、透明度等自定义美化效果"></a>背景图片、透明度等自定义美化效果</h2><ul>
-<li>打开博客根目录下的source文件夹，在里面新建一个_data文件夹，并创建一个<strong>styles.styl</strong>文件</li>
-<li>打开next文件夹下的 <strong>_config.yml</strong> 文件，找到custom_file_path字段，将最后一行的style注释去掉即可<img src="https://raw.githubusercontent.com/pink-star/image/master/custom.jpg" alt=""></li>
-<li>这时我们就可以在<strong>styles.styl</strong>文件夹下自行添加css语句来自定义样式了，比如添加背景图片<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    background:url(你的图片路径);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>博客搭建</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vs中类库引用</title>
-    <url>/2020/10/11/Vs%E4%B8%AD%E7%B1%BB%E5%BA%93%E5%BC%95%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="类库的引用"><a href="#类库的引用" class="headerlink" title="类库的引用"></a>类库的引用</h1><p>类库的引用时使用命名空间和类的物理基础，类库的引用分两种，一种是dll（即动态链接库引用），一种是项目引用</p>
-<ul>
-<li>dll-动态链接引用（黑盒引用，无源代码）<ul>
-<li>dll引用缺点：引用一个库可能还需要引用下层类库，非则会报错，麻烦且不安全</li>
-<li>NuGet使用：可以直接引用打包好的类库，无需检查是否有遗漏（NuGet是vs的一个扩展工具，可以让我们在项目中添加、删除、更新引用变得更加快捷方便）</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-
-<ul>
-<li>项目引用（白盒引用，有源代码）</li>
-</ul>
-<h2 id="添加一个项目引用："><a href="#添加一个项目引用：" class="headerlink" title="添加一个项目引用："></a>添加一个项目引用：</h2><ul>
-<li>首先要将项目包含到自己的解决方案里面，(一个项目能够被多个solution包含，叫project的重用)  </li>
-</ul>
-<ol>
-<li>在解决方案中添加需要引用的project，右击解决方案然后添加一个Existing Project，找到对应的proj文件即可文件<br><img src="https://raw.githubusercontent.com/pink-star/image/master/1.jpg" alt="01"></li>
-<li>选择添加Reference然后在Projects栏中的Solution中即可看到刚刚添加的项目，选中添加即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/2.jpg" alt="02"></li>
-</ol>
-<h2 id="添加一个动态链接库引用"><a href="#添加一个动态链接库引用" class="headerlink" title="添加一个动态链接库引用"></a>添加一个动态链接库引用</h2><p>只需在添加Reference界面选择对应的dll文件即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/3.jpg" alt="03"></p>
-<h2 id="自建类库项目"><a href="#自建类库项目" class="headerlink" title="自建类库项目"></a>自建类库项目</h2><p>创建一个Class Library项目（非可执行程序，编译出来的结果就是dll文件），然后即可将该dll文件引用到需要的地方即可<br><img src="https://raw.githubusercontent.com/pink-star/image/master/4.jpg" alt="04"></p>
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>库引用</tag>
-        <tag>Visual Studio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚幻引擎笔记</title>
-    <url>/2020/06/05/%E8%99%9A%E5%B9%BB%E5%BC%95%E6%93%8E%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="暂时先这样写"><a href="#暂时先这样写" class="headerlink" title="暂时先这样写"></a>暂时先这样写</h1><ul>
-<li>正文日后补上</li>
-</ul>
-<a id="more"></a>
-]]></content>
-      <categories>
-        <category>编程</category>
-      </categories>
-      <tags>
-        <tag>虚幻引擎</tag>
-        <tag>游戏开发</tag>
-        <tag>C++</tag>
-        <tag>蓝图</tag>
       </tags>
   </entry>
 </search>
